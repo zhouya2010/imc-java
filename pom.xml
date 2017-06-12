@@ -326,6 +326,12 @@
             <version>${dozer.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.26-incubating</version>
+        </dependency>
+
     </dependencies>
 
     <!--多环境打包配置-->

@@ -76,6 +76,9 @@
           <element id="library" level="project" name="Maven: org.apache.lucene:lucene-analyzers-common:5.5.4" />
           <element id="library" level="project" name="Maven: org.apache.lucene:lucene-facet:5.5.4" />
           <element id="library" level="project" name="Maven: org.apache.lucene:lucene-queries:5.5.4" />
+          <element id="library" level="project" name="Maven: org.springframework.data:spring-data-jpa:1.11.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.data:spring-data-commons:1.13.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.8.10" />
         </element>
       </element>
     </root>

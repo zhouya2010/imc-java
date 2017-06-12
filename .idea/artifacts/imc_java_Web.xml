@@ -66,6 +66,7 @@
           <element id="library" level="project" name="Maven: org.apache.lucene:lucene-analyzers-common:5.5.4" />
           <element id="library" level="project" name="Maven: org.apache.lucene:lucene-facet:5.5.4" />
           <element id="library" level="project" name="Maven: org.apache.lucene:lucene-queries:5.5.4" />
+          <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.26-incubating" />
         </element>
       </element>
     </root>
