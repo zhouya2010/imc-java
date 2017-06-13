@@ -9,11 +9,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @ComponentScan(
-        basePackages = {"com.yundian.imc.config.other"},
+        basePackages = {"com.yundian.imc.config.other","com.yundian.imc.dao", "com.yundian.imc.entity", "com.yundian.imc.service"},
         excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class)}
 )
 
-//,"com.yundian.imc.dao", "com.yundian.imc.domain", "com.yundian.imc.service"
 public class RootConfig {
 
 }

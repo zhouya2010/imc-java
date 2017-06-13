@@ -1,8 +1,6 @@
-package com.sidu.config.other;
+package com.yundian.imc.config.other;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
@@ -21,9 +19,6 @@ import javax.persistence.ValidationMode;
 import java.util.Hashtable;
 import java.util.Map;
 
-/**
- * Created by junjun on 2017/2/26.
- */
 
 @Configuration
 //事务
@@ -62,7 +57,7 @@ public class DataSourceConfig {
                 new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(adapter);
         factory.setDataSource(dataSource());
-        factory.setPackagesToScan("com.sidu.entity");
+        factory.setPackagesToScan("com.yundian.imc.entity");
         factory.setSharedCacheMode(SharedCacheMode.ENABLE_SELECTIVE);
         factory.setValidationMode(ValidationMode.NONE);
         factory.setJpaPropertyMap(properties);

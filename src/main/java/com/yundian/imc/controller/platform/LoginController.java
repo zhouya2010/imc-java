@@ -1,4 +1,4 @@
-package com.yundian.imc.controller;
+package com.yundian.imc.controller.platform;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
