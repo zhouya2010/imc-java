@@ -1,14 +1,9 @@
 package com.yundian.imc.controller;
 
-import com.yundian.imc.common.LoginBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.sound.midi.Soundbank;
 
 @Controller
 @RequestMapping("admin")
@@ -20,8 +15,6 @@ public class LoginController {
     @RequestMapping(value = "home", method = RequestMethod.GET)
     public String main() {
         System.out.println("=======> home");
-
-
         return "/sign-in";
     }
 
@@ -38,5 +31,9 @@ public class LoginController {
         return "/index";
     }
 
+    @RequestMapping("hello")
+    public String hello(){
+        return "/hello";
+    }
 
 }

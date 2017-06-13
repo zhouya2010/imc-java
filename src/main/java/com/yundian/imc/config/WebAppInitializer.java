@@ -1,6 +1,7 @@
 package com.yundian.imc.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
@@ -10,9 +11,7 @@ import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration;
 
-/**
- * Created by dell on 2017/1/6.
- */
+@PropertySource(value = {"classpath:config.properties"}, ignoreResourceNotFound = true)
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     //spring 相关配置
@@ -33,6 +32,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     public MultipartResolver multipartResolver() {
         return new StandardServletMultipartResolver();
     }
+
 
     /*上传参数*/
     @Override

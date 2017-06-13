@@ -79,6 +79,7 @@
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-jpa:1.11.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-commons:1.13.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.8.10" />
+          <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.26-incubating" />
         </element>
       </element>
     </root>
