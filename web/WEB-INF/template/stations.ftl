@@ -74,12 +74,12 @@
 
     <div class="header">
 
-        <h1 class="page-title">Users</h1>
+        <h1 class="page-title">Station</h1>
     </div>
 
     <ul class="breadcrumb">
         <li><a href="index.html">Home</a> <span class="divider">/</span></li>
-        <li class="active">Users</li>
+        <li class="active">Station</li>
     </ul>
 
     <div class="container-fluid">
@@ -97,21 +97,23 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>UserName</th>
-                        <th>Password</th>
-                        <th>Email</th>
+                        <th>stationName</th>
+                        <th>operatorId</th>
+                        <th>address</th>
+                        <th>stationType</th>
                         <th style="width: 26px;"></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <#list users as user>
+                    <#list stations as station>
                     <tr>
-                        <td>${user_index+1}</td>
-                        <td>${user.username}</td>
-                        <td>${user.password}</td>
-                        <td>${user.email}</td>
+                        <td>${station_index+1}</td>
+                        <td>${station.stationName}</td>
+                        <td>${station.operatorId}</td>
+                        <td>${station.address}</td>
+                        <td>${station.stationType}</td>
                         <td>
-                            <a href="/admin/user/${user.id}"><i class="icon-pencil"></i></a>
+                            <a href="/admin/stations/${station.id}"><i class="icon-pencil"></i></a>
                             <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
                         </td>
                     </tr>
@@ -123,10 +125,9 @@
             <div class="pagination">
                 <ul>
                     <li><a href="#">Prev</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
+                    <#list 1 .. total as  x>
+                    <li><a href="#">${x}</a></li>
+                    </#list>
                     <li><a href="#">Next</a></li>
                 </ul>
             </div>

@@ -115,7 +115,7 @@ public class Station extends BaseEntity<Long>{
     @Size(max = 100, message = "备注信息最多100个字符")
     private String remark;
 
-//    private List<Pole> poles;
+    private List<Pole> poles;
 
 //    private List<String> pictures;
 
@@ -344,13 +344,14 @@ public class Station extends BaseEntity<Long>{
         this.remark = remark == null ? null : remark.trim();
     }
 
-//    public List<Pole> getPoles() {
-//        return poles;
-//    }
-//
-//    public void setPoles(List<Pole> poles) {
-//        this.poles = poles;
-//    }
+    @OneToMany(mappedBy = "station", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    public List<Pole> getPoles() {
+        return poles;
+    }
+
+    public void setPoles(List<Pole> poles) {
+        this.poles = poles;
+    }
 
 //    public List<String> getPictures() {
 //        return pictures;
@@ -359,4 +360,14 @@ public class Station extends BaseEntity<Long>{
 //    public void setPictures(List<String> pictures) {
 //        this.pictures = pictures;
 //    }
+
+
+    @Override
+    public String toString() {
+        return "Station{" +
+                "stationId='" + stationId + '\'' +
+                ", stationName='" + stationName + '\'' +
+                ", poles=" + poles +
+                '}';
+    }
 }

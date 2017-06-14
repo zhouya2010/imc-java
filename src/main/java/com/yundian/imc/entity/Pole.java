@@ -1,23 +1,23 @@
 package com.yundian.imc.entity;
 
-import org.springframework.stereotype.Component;
-
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
-@Component
+@Entity
+@Table(name = "t_pole")
 public class Pole extends BaseEntity<Long>{
 
     @NotNull(message = "充电桩 ID 不能为空")
     @Size( max = 23, message = "充电桩 ID 最多为23个字符")
     private String poleId;
 
-    @NotNull(message = "充电站 ID 不能为空")
-    @Size( max = 20, message = "充电站 ID 最多为20个字符")
-    private String stationId;
+//    @NotNull(message = "充电站 ID 不能为空")
+//    @Size( max = 20, message = "充电站 ID 最多为20个字符")
+//    private String stationId;
 
     @NotNull(message = "充电桩生产商组织机构代码不能为空")
     @Size(min = 9, max = 9, message = "充电桩生产商组织机构代码为9个字符")
@@ -50,8 +50,11 @@ public class Pole extends BaseEntity<Long>{
     @NotNull(message = "充电桩名称率不能为空")
     private String poleName;
 
-    List<Connector> connectors;
+//    List<Connector> connectors;
 
+    private Station station;
+
+    @Column(name = "pole_id")
     public String getPoleId() {
         return poleId;
     }
@@ -60,14 +63,16 @@ public class Pole extends BaseEntity<Long>{
         this.poleId = poleId == null ? null : poleId.trim();
     }
 
-    public String getStationId() {
-        return stationId;
-    }
+//    @Column(name = "station_id")
+//    public String getStationId() {
+//        return stationId;
+//    }
+//
+//    public void setStationId(String stationId) {
+//        this.stationId = stationId == null ? null : stationId.trim();
+//    }
 
-    public void setStationId(String stationId) {
-        this.stationId = stationId == null ? null : stationId.trim();
-    }
-
+    @Column(name = "manufacturer_id")
     public String getManufacturerId() {
         return manufacturerId;
     }
@@ -76,6 +81,7 @@ public class Pole extends BaseEntity<Long>{
         this.manufacturerId = manufacturerId == null ? null : manufacturerId.trim();
     }
 
+    @Column(name = "manufacturer_name")
     public String getManufacturerName() {
         return manufacturerName;
     }
@@ -84,6 +90,7 @@ public class Pole extends BaseEntity<Long>{
         this.manufacturerName = manufacturerName == null ? null : manufacturerName.trim();
     }
 
+    @Column(name = "pole_model")
     public String getPoleModel() {
         return poleModel;
     }
@@ -92,6 +99,7 @@ public class Pole extends BaseEntity<Long>{
         this.poleModel = poleModel == null ? null : poleModel.trim();
     }
 
+    @Column(name = "production_date")
     public Date getProductionDate() {
         return productionDate;
     }
@@ -100,6 +108,7 @@ public class Pole extends BaseEntity<Long>{
         this.productionDate = productionDate;
     }
 
+    @Column(name = "pole_type")
     public Byte getPoleType() {
         return poleType;
     }
@@ -108,6 +117,7 @@ public class Pole extends BaseEntity<Long>{
         this.poleType = poleType;
     }
 
+    @Column(name = "pole_lng")
     public Double getPoleLng() {
         return poleLng;
     }
@@ -116,6 +126,7 @@ public class Pole extends BaseEntity<Long>{
         this.poleLng = poleLng;
     }
 
+    @Column(name = "pole_lat")
     public Double getPoleLat() {
         return poleLat;
     }
@@ -124,6 +135,7 @@ public class Pole extends BaseEntity<Long>{
         this.poleLat = poleLat;
     }
 
+    @Column(name = "power")
     public Double getPower() {
         return power;
     }
@@ -132,6 +144,7 @@ public class Pole extends BaseEntity<Long>{
         this.power = power;
     }
 
+    @Column(name = "pole_name")
     public String getPoleName() {
         return poleName;
     }
@@ -140,11 +153,21 @@ public class Pole extends BaseEntity<Long>{
         this.poleName = poleName == null ? null : poleName.trim();
     }
 
-    public List<Connector> getConnectors() {
-        return connectors;
+//    public List<Connector> getConnectors() {
+//        return connectors;
+//    }
+//
+//    public void setConnectors(List<Connector> connectors) {
+//        this.connectors = connectors;
+//    }
+
+    @ManyToOne
+    @JoinColumn(name = "station_id",referencedColumnName = "station_id", nullable = false)
+    public Station getStation() {
+        return station;
     }
 
-    public void setConnectors(List<Connector> connectors) {
-        this.connectors = connectors;
+    public void setStation(Station station) {
+        this.station = station;
     }
 }
