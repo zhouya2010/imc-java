@@ -4,24 +4,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "t_user")
-public class User {
-    private long id;
+public class User extends BaseEntity<Long>{
 
     private String username;
     private String password;
     private String email;
     private Boolean enable;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     @Column(name = "username")
     public String getUsername() {

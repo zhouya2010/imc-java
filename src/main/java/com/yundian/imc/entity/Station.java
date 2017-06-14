@@ -9,7 +9,6 @@ import java.util.List;
 @Entity
 @Table(name = "t_station")
 public class Station extends BaseEntity<Long>{
-    private Long id;
 
 //    @NotNull(message = "充电桩 ID 不能为空")
 //    @Size(max = 20, message = "充电桩 ID 最多20个字符")
@@ -116,9 +115,9 @@ public class Station extends BaseEntity<Long>{
     @Size(max = 100, message = "备注信息最多100个字符")
     private String remark;
 
-    private List<Pole> poles;
+//    private List<Pole> poles;
 
-    private List<String> pictures;
+//    private List<String> pictures;
 
     @Column(name = "station_id")
     public String getStationId() {
@@ -156,11 +155,11 @@ public class Station extends BaseEntity<Long>{
         this.stationName = stationName == null ? null : stationName.trim();
     }
 
+    @Column(name = "country_code")
     public String getCountryCode() {
         return countryCode;
     }
 
-    @Column(name = "country_code")
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode == null ? null : countryCode.trim();
     }
@@ -345,20 +344,19 @@ public class Station extends BaseEntity<Long>{
         this.remark = remark == null ? null : remark.trim();
     }
 
-    @OneToMany
-    public List<Pole> getPoles() {
-        return poles;
-    }
+//    public List<Pole> getPoles() {
+//        return poles;
+//    }
+//
+//    public void setPoles(List<Pole> poles) {
+//        this.poles = poles;
+//    }
 
-    public void setPoles(List<Pole> poles) {
-        this.poles = poles;
-    }
-
-    public List<String> getPictures() {
-        return pictures;
-    }
-
-    public void setPictures(List<String> pictures) {
-        this.pictures = pictures;
-    }
+//    public List<String> getPictures() {
+//        return pictures;
+//    }
+//
+//    public void setPictures(List<String> pictures) {
+//        this.pictures = pictures;
+//    }
 }

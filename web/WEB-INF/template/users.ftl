@@ -111,7 +111,7 @@
                         <td>${user.password}</td>
                         <td>${user.email}</td>
                         <td>
-                            <a href="/admin/user/${user.id}"><i class="icon-pencil"></i></a>
+                            <a href="/admin/users/${user.id}"><i class="icon-pencil"></i></a>
                             <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
                         </td>
                     </tr>

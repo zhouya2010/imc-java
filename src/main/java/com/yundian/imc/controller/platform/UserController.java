@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("admin/user")
+@RequestMapping("admin")
 public class UserController {
 
     @Autowired
@@ -17,14 +17,14 @@ public class UserController {
 
     @RequestMapping(value = "users",method = RequestMethod.GET)
     public String getUsers(ModelMap model){
-        model.addAttribute("users",userService.getUsers());
+        model.addAttribute("users",userService.findAll());
         return "/users";
     }
 
-    @RequestMapping("/{userId}")
+    @RequestMapping(value = "users/{userId}",method = RequestMethod.GET)
     public String getUser(@PathVariable Long userId, ModelMap model){
         System.out.println("userId ====>" + userId);
-        model.addAttribute("user",userService.find(userId));
+        model.addAttribute("user",userService.findOne(userId));
         return "/user";
     }
 
