@@ -5,7 +5,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "t_pole")
@@ -161,8 +160,8 @@ public class Pole extends BaseEntity<Long>{
 //        this.connectors = connectors;
 //    }
 
-    @ManyToOne
-    @JoinColumn(name = "station_id",referencedColumnName = "station_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false,cascade=CascadeType.ALL)
+    @JoinColumn(name = "station_id",referencedColumnName = "station_id")
     public Station getStation() {
         return station;
     }

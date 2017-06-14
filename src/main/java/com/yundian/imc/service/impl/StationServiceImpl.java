@@ -17,4 +17,8 @@ public class StationServiceImpl extends BaseServiceImpl<Station, Long> implement
     private StationDao stationDao;
 
 
+    @Override
+    public Station findStationByStationId(String stationId) {
+        return stationDao.findStationByStationId(stationId);
+    }
 }

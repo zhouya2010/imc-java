@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Optional;
-
 @Controller
 @RequestMapping("admin")
 public class StationController {
@@ -36,11 +34,14 @@ public class StationController {
         return "stations";
     }
 
-    @RequestMapping(value = "stations/{id}",method = RequestMethod.GET)
-    public String getStation(@PathVariable Long id, ModelMap model) {
-        model.addAttribute("station",stationService.findOne(id));
+    @RequestMapping(value = "stations/{stationId}",method = RequestMethod.GET)
+    public String getStation(@PathVariable String stationId, ModelMap model) {
+        System.err.println("id ======> "+ stationId);
+
+//        model.addAttribute("station",stationService.findOne(id));
+        model.addAttribute("station",stationService.findStationByStationId(stationId));
 //        System.out.println(stationService.findOne(id).getPoles().size());
-//        System.out.println("====>" + Optional.of(stationService.findOne(id).getPoles()).isPresent());
+        System.out.println("====>" + stationService.findStationByStationId(stationId).getPoles().size());
         return "station-edit";
     }
 

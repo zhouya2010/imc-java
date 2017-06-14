@@ -113,7 +113,7 @@
                         <td>${station.address}</td>
                         <td>${station.stationType}</td>
                         <td>
-                            <a href="/admin/stations/${station.id}"><i class="icon-pencil"></i></a>
+                            <a href="/admin/stations/${station.stationId}"><i class="icon-pencil"></i></a>
                             <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
                         </td>
                     </tr>

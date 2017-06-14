@@ -360,14 +360,4 @@ public class Station extends BaseEntity<Long>{
 //    public void setPictures(List<String> pictures) {
 //        this.pictures = pictures;
 //    }
-
-
-    @Override
-    public String toString() {
-        return "Station{" +
-                "stationId='" + stationId + '\'' +
-                ", stationName='" + stationName + '\'' +
-                ", poles=" + poles +
-                '}';
-    }
 }
