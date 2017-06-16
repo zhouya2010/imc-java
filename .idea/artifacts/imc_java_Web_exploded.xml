@@ -80,6 +80,10 @@
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-commons:1.13.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.8.10" />
           <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.26-incubating" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:4.2.3.RELEASE" />
+          <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:4.2.3.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:4.2.3.RELEASE" />
         </element>
       </element>
     </root>
