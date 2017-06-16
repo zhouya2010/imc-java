@@ -14,7 +14,6 @@ public class LoginController {
      */
     @RequestMapping(value = "home", method = RequestMethod.GET)
     public String main() {
-        System.out.println("=======> home");
         return "/sign-in";
     }
 
@@ -25,14 +24,11 @@ public class LoginController {
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(String username, String password, ModelMap model) {
-        System.out.println("=======> login");
-        System.out.println("password ==>" + username);
-        System.out.println("password ==>" + password);
         return "/index";
     }
 
     @RequestMapping("hello")
-    public String hello(){
+    public String hello() {
         return "/hello";
     }
 

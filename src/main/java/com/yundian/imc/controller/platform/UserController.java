@@ -15,16 +15,15 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "users",method = RequestMethod.GET)
-    public String getUsers(ModelMap model){
-        model.addAttribute("users",userService.findAll());
+    @RequestMapping(value = "users", method = RequestMethod.GET)
+    public String getUsers(ModelMap model) {
+        model.addAttribute("users", userService.findAll());
         return "/users";
     }
 
-    @RequestMapping(value = "users/{userId}",method = RequestMethod.GET)
-    public String getUser(@PathVariable Long userId, ModelMap model){
-        System.out.println("userId ====>" + userId);
-        model.addAttribute("user",userService.findOne(userId));
+    @RequestMapping(value = "users/{userId}", method = RequestMethod.GET)
+    public String getUser(@PathVariable Long userId, ModelMap model) {
+        model.addAttribute("user", userService.findOne(userId));
         return "/user";
     }
 

@@ -169,4 +169,12 @@ public class Pole extends BaseEntity<Long>{
     public void setStation(Station station) {
         this.station = station;
     }
+
+    @Override
+    public String toString() {
+        return "Pole{" +
+                "poleId='" + poleId + '\'' +
+                ", poleName='" + poleName +
+                '}';
+    }
 }

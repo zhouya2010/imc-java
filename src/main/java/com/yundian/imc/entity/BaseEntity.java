@@ -8,14 +8,6 @@ import java.util.Date;
 @MappedSuperclass
 public class BaseEntity<ID extends Serializable> implements Serializable, Cloneable {
 
-//    //总共页数
-//    private int pageTotal;
-//
-//    //页长
-//    private int pageLength;
-//
-//    //当前页码，从0开始
-//    private int pagination;
     private ID id;
 
     @NotNull(message = "是否删除不能为空")

@@ -19,29 +19,22 @@ public class StationController {
     @Autowired
     private StationService stationService;
 
-    @RequestMapping(value = "stations",method = RequestMethod.GET)
-    public String getStations(@RequestParam(name = "page",defaultValue = "0",required = false) int page,
-                              @RequestParam(name = "size",defaultValue = "20",required = false) int size,
+    @RequestMapping(value = "stations", method = RequestMethod.GET)
+    public String getStations(@RequestParam(name = "page", defaultValue = "0", required = false) int page,
+                              @RequestParam(name = "size", defaultValue = "20", required = false) int size,
                               ModelMap model) {
 
-        PageRequest pageRequest = new PageRequest(page,size);
+        PageRequest pageRequest = new PageRequest(page, size);
         Page<Station> stationPage = stationService.findAll(pageRequest);
 
-        stationPage.getContent().forEach(station -> System.out.println(station.getStationId() + "    " + station.getPoles().size()));
-
         model.addAttribute("stations", stationPage.getContent());
-        model.addAttribute("total",stationPage.getTotalPages());
+        model.addAttribute("total", stationPage.getTotalPages());
         return "stations";
     }
 
-    @RequestMapping(value = "stations/{stationId}",method = RequestMethod.GET)
+    @RequestMapping(value = "stations/{stationId}", method = RequestMethod.GET)
     public String getStation(@PathVariable String stationId, ModelMap model) {
-        System.err.println("id ======> "+ stationId);
-
-//        model.addAttribute("station",stationService.findOne(id));
-        model.addAttribute("station",stationService.findStationByStationId(stationId));
-//        System.out.println(stationService.findOne(id).getPoles().size());
-        System.out.println("====>" + stationService.findStationByStationId(stationId).getPoles().size());
+        model.addAttribute("station", stationService.findStationByStationId(stationId));
         return "station-edit";
     }
 
