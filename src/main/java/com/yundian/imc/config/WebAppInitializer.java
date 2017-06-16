@@ -1,15 +1,16 @@
 package com.yundian.imc.config;
 
+import org.apache.shiro.web.env.EnvironmentLoaderListener;
+import org.apache.shiro.web.servlet.ShiroFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.servlet.Filter;
-import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletRegistration;
+import javax.servlet.*;
 
 @PropertySource(value = {"classpath:config.properties"}, ignoreResourceNotFound = true)
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -33,6 +34,14 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         return new StandardServletMultipartResolver();
     }
 
+
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        servletContext.addListener(EnvironmentLoaderListener.class);
+        FilterRegistration.Dynamic dynamic = servletContext.addFilter("ShiroFilter", DelegatingFilterProxy.class);
+        dynamic.addMappingForUrlPatterns(null, false, "/*");
+        super.onStartup(servletContext);
+    }
 
     /*上传参数*/
     @Override

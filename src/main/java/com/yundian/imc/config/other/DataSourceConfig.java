@@ -49,9 +49,9 @@ public class DataSourceConfig {
         Map<String, Object> properties = new Hashtable<>();
         properties.put("javax.persistence.schema-generation.database.action",
                 "none");
-        properties.put("hibernate.show_sql",true);
-        properties.put("hibernate.format_sql",true);
-        properties.put("hibernate.use_sql_comments",false);
+//        properties.put("hibernate.show_sql",true);
+//        properties.put("hibernate.format_sql",true);
+//        properties.put("hibernate.use_sql_comments",false);
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.setDatabasePlatform("org.hibernate.dialect.MySQL5InnoDBDialect");
 
