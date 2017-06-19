@@ -10,6 +10,7 @@ public class User extends BaseEntity<Long>{
     private String password;
     private String email;
     private Boolean enable;
+    private Permission permission;
 
     @Column(name = "username")
     public String getUsername() {
@@ -19,7 +20,6 @@ public class User extends BaseEntity<Long>{
     public void setUsername(String username) {
         this.username = username;
     }
-
     @Column(name = "password")
     public String getPassword() {
         return password;
@@ -45,5 +45,15 @@ public class User extends BaseEntity<Long>{
 
     public void setEnable(Boolean enable) {
         this.enable = enable;
+    }
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "username")
+    public Permission getPermission() {
+        return permission;
+    }
+
+    public void setPermission(Permission permission) {
+        this.permission = permission;
     }
 }

@@ -65,33 +65,29 @@
 <body class="">
 <!--<![endif]-->
 
-<div class="navbar">
-    <div class="navbar-inner">
-        <ul class="nav pull-right">
-
-        </ul>
-        <a class="brand" href="index"><span class="first">云电科技</span></a>
-    </div>
-</div>
-
+<#include "navbar.ftl">
 <div class="row-fluid">
     <div class="dialog">
         <div class="block">
-            <p class="block-heading">Sign In</p>
+            <p class="block-heading">Sign Up</p>
             <div class="block-body">
-                <form id="loginForm" action="login" method="post" enctype="application/x-www-form-urlencoded">
+                <form>
+                    <label>User Name</label>
+                    <input placeholder="Your phone Number" type="text" class="span12">
+                    <label>Email Address</label>
+                    <input type="text" class="span12">
                     <label>Username</label>
-                    <input type="text" class="span12" name="username">
+                    <input type="text" class="span12">
                     <label>Password</label>
-                    <input type="password" class="span12" name="password">
-                    <button type="submit" class="btn btn-primary pull-right">Sign In</button>
-                    <label class="remember-me"><input type="checkbox"> Remember me</label>
+                    <input type="password" class="span12">
+                    <a href="index.html" class="btn btn-primary pull-right">Sign Up!</a>
+                    <label class="remember-me"><input type="checkbox"> I agree with the <a
+                            href="terms-and-conditions.html">Terms and Conditions</a></label>
                     <div class="clearfix"></div>
                 </form>
             </div>
         </div>
-        <p class="pull-right" style=""><a href="http://www.portnine.com" target="blank">Theme by Portnine</a></p>
-        <p><a href="reset-password">Forgot your password?</a></p>
+        <p><a href="privacy-policy.html">Privacy Policy</a></p>
     </div>
 </div>
 

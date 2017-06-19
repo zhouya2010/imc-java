@@ -85,12 +85,12 @@
                     <label>Password</label>
                     <input type="password" class="span12" name="password">
                     <button type="submit" class="btn btn-primary pull-right">Sign In</button>
-                    <label class="remember-me"><input type="checkbox"> Remember me</label>
+                    <label class="remember-me"><input type="checkbox" id="remember-me" name="remember-me"> Remember me</label>
                     <div class="clearfix"></div>
                 </form>
             </div>
         </div>
-        <p class="pull-right" style=""><a href="http://www.portnine.com" target="blank">Theme by Portnine</a></p>
+        <p class="pull-right" style=""><a href="/admin/sign-up" target="blank">Sign up</a></p>
         <p><a href="reset-password">Forgot your password?</a></p>
     </div>
 </div>

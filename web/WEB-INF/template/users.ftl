@@ -86,7 +86,7 @@
         <div class="row-fluid">
 
             <div class="btn-toolbar">
-                <button class="btn btn-primary"><i class="icon-plus"></i> New User</button>
+                <a href="/admin/sign-up"><button class="btn btn-primary"><i class="icon-plus"></i> New User</button></a>
                 <button class="btn">Import</button>
                 <button class="btn">Export</button>
                 <div class="btn-group">
@@ -98,7 +98,7 @@
                     <tr>
                         <th>#</th>
                         <th>UserName</th>
-                        <th>Password</th>
+                        <th>Role</th>
                         <th>Email</th>
                         <th style="width: 26px;"></th>
                     </tr>
@@ -108,7 +108,7 @@
                     <tr>
                         <td>${user_index+1}</td>
                         <td>${user.username}</td>
-                        <td>${user.password}</td>
+                        <td>${user.permission.role}</td>
                         <td>${user.email}</td>
                         <td>
                             <a href="/admin/users/${user.id}"><i class="icon-pencil"></i></a>

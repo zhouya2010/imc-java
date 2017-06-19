@@ -5,6 +5,7 @@ import com.yundian.imc.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ public class StationController {
     @Autowired
     private StationService stationService;
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "stations", method = RequestMethod.GET)
     public String getStations(@RequestParam(name = "page", defaultValue = "0", required = false) int page,
                               @RequestParam(name = "size", defaultValue = "20", required = false) int size,

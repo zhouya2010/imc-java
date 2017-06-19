@@ -1,45 +1,40 @@
 package com.yundian.imc.config.other;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.yundian.imc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-/**
- * Created by dell on 2017/1/4.
- */
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true)
 @Import(DataSourceConfig.class)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     DruidDataSource dataSource;
 
+    @Autowired
+    UserDetailsService userService;
+
     @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception {
-        System.out.println("AuthenticationManagerBuilder");
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
-        System.out.println("=====>" + encoder.encode("123456"));
-
-        builder
-                .jdbcAuthentication()
-                .dataSource(dataSource)
-                .usersByUsernameQuery("select username, password, enable from t_user where username=?")
-                .authoritiesByUsernameQuery("select username, role from t_permission where username=?")
-                .passwordEncoder(new BCryptPasswordEncoder());
-
-//        builder.inMemoryAuthentication()
-//                .withUser("test").password("1234").roles("admin")
-//                .and()
-//                .withUser("test2").password("1234").roles("user");
+//        builder
+//                .jdbcAuthentication()
+//                .dataSource(dataSource)
+//                .usersByUsernameQuery("select username, password, enable from t_user where username=?")
+//                .authoritiesByUsernameQuery("select username, role from t_permission where username=?")
+//                .passwordEncoder(new BCryptPasswordEncoder());
+        builder.userDetailsService(userService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
     @Override
@@ -57,8 +52,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/admin/users/**").hasRole("USER")
                     .antMatchers("/admin/stations/**").hasRole("ADMIN")
-                    .antMatchers("/admin/home").permitAll()
+//                    .antMatchers("/admin/home").permitAll()
+//                    .antMatchers("/admin/sign-up").permitAll()
                     .antMatchers("/error/*").permitAll()
+//                    .antMatchers("/admin/*").permitAll()
 //                    .antMatchers("/**/list").permitAll()
                     .anyRequest().authenticated()
                 .and().formLogin()

@@ -37,4 +37,9 @@ public class LoginController {
     public String logout(){
         return "/sign-in";
     }
+
+    @RequestMapping(value = "sign-up",method = RequestMethod.GET)
+    public String signUp(){
+        return "/sign-up";
+    }
 }
