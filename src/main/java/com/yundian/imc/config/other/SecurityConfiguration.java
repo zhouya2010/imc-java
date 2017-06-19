@@ -25,9 +25,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception {
         System.out.println("AuthenticationManagerBuilder");
-//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(30,)
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-//        System.out.println("=====>" + encoder.encode("123456"));
+        System.out.println("=====>" + encoder.encode("123456"));
 
         builder
                 .jdbcAuthentication()
@@ -62,19 +62,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                    .antMatchers("/**/list").permitAll()
                     .anyRequest().authenticated()
                 .and().formLogin()
-                    .loginPage("/admin/home").failureUrl("/admin/error/505")
+                    .loginPage("/admin/home").failureUrl("/error/505")
                     .defaultSuccessUrl("/admin/index")
                     .usernameParameter("username")
                     .passwordParameter("password")
                     .loginProcessingUrl("/admin/login")
                     .permitAll()
                 .and().logout()
-                    .logoutUrl("/logout").logoutSuccessUrl("/login?loggedOut")
+                    .logoutUrl("/admin/logout").logoutSuccessUrl("/admin/home")
                     .invalidateHttpSession(true)
                     .deleteCookies("JSESSONID")
                     .permitAll()
                 .and()
-                .rememberMe()
+                    .rememberMe()
+                .and()
+                    .exceptionHandling()
+                    .accessDeniedPage("/error/403")
                 .and().csrf().disable();
     }
 }

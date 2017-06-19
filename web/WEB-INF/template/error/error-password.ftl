@@ -69,7 +69,7 @@
             </div>
             <div class="error-message">
                 <p>Username or password error.<p>
-                <p class="return-home"><a href="index.html">Back to the home page</a></p>
+                <p class="return-home"><a href="/admin/home">Back to the home page</a></p>
             </div>
         </div>
     </div>

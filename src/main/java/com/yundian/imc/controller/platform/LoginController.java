@@ -33,23 +33,8 @@ public class LoginController {
         return "/index";
     }
 
-    @RequestMapping("hello")
-    public String hello() {
-        return "/hello";
+    @RequestMapping(value = "logout",method = RequestMethod.GET)
+    public String logout(){
+        return "/sign-in";
     }
-
-    @RequestMapping("error/{code}")
-    public String error(@PathVariable int code) {
-        switch (code) {
-            case 403:
-                return "/403";
-            case 404:
-                return "/404";
-            case 505:
-                return "/error-password";
-            default:
-                return "500";
-        }
-    }
-
 }
