@@ -21,4 +21,9 @@ public class StationServiceImpl extends BaseServiceImpl<Station, Long> implement
     public Station findStationByStationId(String stationId) {
         return stationDao.findStationByStationId(stationId);
     }
+
+    @Override
+    public int countStationsByAreaCode(String area) {
+        return stationDao.countStationsByAreaCode(area);
+    }
 }

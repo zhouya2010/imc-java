@@ -3,6 +3,7 @@ package com.yundian.imc.controller.platform;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -21,11 +22,5 @@ public class AdviceController {
     public String handle403(Exception ex) {
         return "/403";
     }
-
-//    @ExceptionHandler(ResponseStatusExceptionResolver.class)
-//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-//    public String handle500(Exception ex) {
-//        return "/403";
-//    }
 
 }

@@ -13,7 +13,6 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/theme.css">
     <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.css">
 
-<#--<script src="/lib/jquery-1.7.2.min.js" type="text/javascript"></script>-->
     <script src="/lib/jquery-3.2.1.js" type="text/javascript"></script>
 
     <!-- Demo page code -->
@@ -75,7 +74,7 @@
 
     <div class="header">
 
-        <h1 class="page-title">Edit Station</h1>
+        <h1 class="page-title">New Station</h1>
     </div>
 
     <ul class="breadcrumb">
@@ -89,29 +88,21 @@
 
             <div class="btn-toolbar">
                 <button class="btn btn-primary" id="btn_save"><i class="icon-save"></i> Save</button>
-                <a href="#myModal" data-toggle="modal" class="btn">Delete</a>
+                <a href="/admin/stations" data-toggle="modal" class="btn">Delete</a>
                 <div class="btn-group">
                 </div>
             </div>
-            <div class="well">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#home" data-toggle="tab">Profile</a></li>
-                    <li><a href="#profile" data-toggle="tab">Password</a></li>
-                </ul>
-                <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane active in" id="home">
-                        <form id="tab">
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane active in" id="home">
+                    <form id="tab">
+                        <div class="form-body">
                             <label>站点名称</label>
-                            <input type="text" class="input-xlarge" id="stationName" value="${station.stationName}">
+                            <input type="text" class="input-xlarge" id="stationName">
 
                             <label>运营商 ID</label>
                             <select name="operatorId" class="input-xlarge" id="operatorId">
-                                <option value="MA1MDPK80" <#if station.operatorId == "MA1MDPK80" >
-                                        selected="selected"</#if>>思度科技
-                                </option>
-                                <option value="783840483" <#if station.operatorId == "783840483" >
-                                        selected="selected"</#if>>云电科技
-                                </option>
+                                <option value="MA1MDPK80">思度科技</option>
+                                <option value="783840483">云电科技</option>
                             </select>
 
                             <label>设备生产商</label>
@@ -120,16 +111,16 @@
                             </select>
 
                             <label>地区编码</label>
-                            <input type="text" class="input-xlarge" id="areaCode" value="${station.areaCode}">
+                            <input type="text" class="input-xlarge" id="areaCode">
 
                             <label>地址</label>
-                            <input type="text" class="input-xlarge" id="address" value="${station.address}">
+                            <input type="text" class="input-xlarge" id="address">
 
                             <label>站点电话</label>
-                            <input type="tel" class="input-xlarge" id="stationTel" value="${station.stationTel}">
+                            <input type="tel" class="input-xlarge" id="stationTel">
 
                             <label>平台服务电话</label>
-                            <input type="tel" class="input-xlarge" id="serviceTel" value="${station.serviceTel}">
+                            <input type="tel" class="input-xlarge" id="serviceTel">
 
                             <label>站点类型</label>
                             <select name="stationType" class="input-xlarge" id="stationType">
@@ -154,76 +145,59 @@
                             </select>
 
                             <label>车位数量</label>
-                            <input type="number" class="input-xlarge" id="parkNums" value="${station.parkNums}">
+                            <input type="number" class="input-xlarge" id="parkNums">
 
                             <label>经度</label>
-                            <input type="text" class="input-xlarge" id="stationLng" value="${station.stationLng}">
+                            <input type="text" class="input-xlarge" id="stationLng">
 
                             <label>纬度</label>
-                            <input type="text" class="input-xlarge" id="stationLat" value="${station.stationLat}">
+                            <input type="text" class="input-xlarge" id="stationLat">
 
                             <label>站点引导</label>
-                            <input type="text" class="input-xlarge" id="siteGuide" value="${station.siteGuide}">
+                            <input type="text" class="input-xlarge" id="siteGuide">
 
                             <label>使用车型描述</label>
-                            <input type="text" class="input-xlarge" id="matchCarsDesc" value="${station.matchCarsDesc}">
+                            <input type="text" class="input-xlarge" id="matchCarsDesc">
 
                             <label>建设场所</label>
                             <select name="construction" class="input-xlarge" id="construction">
-                                <option value="1" <#if station.construction == 1> selected="selected"</#if>>居民区</option>
-                                <option value="2" <#if station.construction == 2> selected="selected"</#if>>公共机构
-                                </option>
-                                <option value="3" <#if station.construction == 3> selected="selected"</#if>>企事业单位
-                                </option>
-                                <option value="4"<#if station.construction == 4> selected="selected"</#if>>写字楼</option>
-                                <option value="5"<#if station.construction == 5> selected="selected"</#if>>工业园区</option>
-                                <option value="6"<#if station.construction == 6> selected="selected"</#if>>交通枢纽</option>
-                                <option value="7"<#if station.construction == 7> selected="selected"</#if>>大型文体设施
-                                </option>
-                                <option value="8"<#if station.construction == 8> selected="selected"</#if>>城市绿地</option>
-                                <option value="9"<#if station.construction == 9> selected="selected"</#if>>大型建筑配建停车场
-                                </option>
-                                <option value="10"<#if station.construction == 10> selected="selected"</#if>>路边停车位
-                                </option>
-                                <option value="11"<#if station.construction == 11> selected="selected"</#if>>城际高速服务区
-                                </option>
-                                <option value="255"<#if station.construction == 255> selected="selected"</#if>>其他
-                                </option>
+                                <option value="1">居民区</option>
+                                <option value="2">公共机构</option>
+                                <option value="3">企事业单位</option>
+                                <option value="4">写字楼</option>
+                                <option value="5">工业园区</option>
+                                <option value="6">交通枢纽</option>
+                                <option value="7">大型文体设施</option>
+                                <option value="8">城市绿地</option>
+                                <option value="9">大型建筑配建停车场</option>
+                                <option value="10">路边停车位</option>
+                                <option value="11">城际高速服务区</option>
+                                <option value="255">其他</option>
                             </select>
 
                             <label>车位楼层以及数量信息</label>
-                            <input type="text" class="input-xlarge" id="parkInfo" value="${station.parkInfo}">
+                            <input type="text" class="input-xlarge" id="parkInfo">
 
                             <label>营业时间</label>
-                            <input type="text" class="input-xlarge" id="busineHours" value="${station.busineHours}">
+                            <input type="text" class="input-xlarge" id="busineHours">
 
                             <label>电费描述</label>
-                            <input type="text" class="input-xlarge" id="electricityFeeDesc"
-                                   value="${station.electricityFeeDesc}">
+                            <input type="text" class="input-xlarge" id="electricityFeeDesc">
 
                             <label>服务费描</label>
-                            <input type="text" class="input-xlarge" id="serviceFeeDesc"
-                                   value="${station.serviceFeeDesc}">
+                            <input type="text" class="input-xlarge" id="serviceFeeDesc">
 
                             <label>停车费描述</label>
-                            <input type="text" class="input-xlarge" id="parkFeeDesc" value="${station.parkFeeDesc}">
+                            <input type="text" class="input-xlarge" id="parkFeeDesc">
 
                             <label>支付方式</label>
-                            <input type="text" class="input-xlarge" id="paymentType" value="${station.paymentType}">
+                            <input type="text" class="input-xlarge" id="paymentType">
 
                             <label>备注</label>
-                            <input type="text" class="input-xlarge" id="remark" value="${station.remark}">
-                        </form>
-                    </div>
-                    <div class="tab-pane fade" id="profile">
-                        <form id="tab2">
-                            <label>New Password</label>
-                            <input type="password" class="input-xlarge">
-                            <div>
-                                <button class="btn btn-primary">Update</button>
-                            </div>
-                        </form>
-                    </div>
+                            <input type="text" class="input-xlarge" id="remark">
+
+                        </div>
+                    </form>
                 </div>
             </div>
 
@@ -271,19 +245,43 @@
 </script>
 
 <script>
-    var station = {
-        stationId:${station.stationId},
-        stationName: $("#stationName").val(),
-        operatorId: $("#operatorId").val(),
-        equipmentOwnerId: $("#equipmentOwnerId").val(),
-        areaCode: $("#areaCode").val(),
-    }
-
     $(document).ready(function () {
         $("#btn_save").click(function () {
-            $.post("/admin/stations", station,
-                    function (data, status) {
-                        alert("数据: \n" + data);
+            $.post("/admin/stations",
+                    {
+                        stationName: $("#stationName").val(),
+                        operatorId: $("#operatorId").val(),
+                        equipmentOwnerId: $("#equipmentOwnerId").val(),
+                        countryCode: "cn",
+                        areaCode: $("#areaCode").val(),
+                        address: $("#address").val(),
+                        stationTel: $("#stationTel").val(),
+                        serviceTel: $("#serviceTel").val(),
+                        stationType: $("#stationType").val(),
+                        stationStatus: $("#stationStatus").val(),
+                        construction: $("#construction").val(),
+                        parkNums: $("#parkNums").val(),
+                        stationLng: $("#stationLng").val(),
+                        stationLat: $("#stationLat").val(),
+                        siteGuide: $("#siteGuide").val(),
+                        parkInfo: $("#parkInfo").val(),
+                        matchCarsDesc: $("#matchCarsDesc").val(),
+                        busineHours: $("#busineHours").val(),
+                        electricityFeeDesc: $("#electricityFeeDesc").val(),
+                        serviceFeeDesc: $("#serviceFeeDesc").val(),
+                        parkFeeDesc: $("#parkFeeDesc").val(),
+                        paymentType: $("#paymentType").val(),
+                        supportOrder: false,
+                        remark: $("#remark").val()
+                    }, function (data, status) {
+                        var res = $.parseJSON(data);
+                        if (res.Ret != 0) {
+                            alert(res.Msg);
+                        }
+                        else {
+                            alert("界面跳转");
+                            window.location.href = "/admin/stations";
+                        }
                     });
         });
     });

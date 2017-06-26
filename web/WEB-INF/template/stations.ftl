@@ -86,9 +86,8 @@
         <div class="row-fluid">
 
             <div class="btn-toolbar">
-                <button class="btn btn-primary"><i class="icon-plus"></i> New User</button>
-                <button class="btn">Import</button>
-                <button class="btn">Export</button>
+                <a href="/admin/stations/new">  <button class="btn btn-primary"><i class="icon-plus"></i> New Station</button> </a>
+                <button class="btn">Search</button>
                 <div class="btn-group">
                 </div>
             </div>

@@ -81,12 +81,12 @@ public class Station extends BaseEntity<Long>{
 
     @NotNull(message = "车位楼层以及数量信息不能为空")
     @NotEmpty(message = "车位楼层以及数量信息不能为空")
-    @Size(max = 100,message = "使用车型描述最多100个字符")
+    @Size(max = 100,message = "车位楼层以及数量信息最多100个字符")
     private String parkInfo;
 
     @NotNull(message = "营业时间不能为空")
     @NotEmpty(message = "营业时间不能为空")
-    @Size(max = 100,message = "使用车型描述最多100个字符")
+    @Size(max = 100,message = "营业时间描述最多100个字符")
     private String busineHours;
 
     @NotNull(message = "电费描述不能为空")

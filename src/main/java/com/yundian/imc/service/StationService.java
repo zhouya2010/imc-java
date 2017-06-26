@@ -5,4 +5,6 @@ import com.yundian.imc.entity.Station;
 
 public interface StationService extends BaseService<Station, Long> {
     Station findStationByStationId(String stationId);
+
+    int countStationsByAreaCode(String area);
 }

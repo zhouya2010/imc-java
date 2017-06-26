@@ -50,13 +50,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         security
                 .authorizeRequests()
-                    .antMatchers("/admin/users/**").hasRole("USER")
-                    .antMatchers("/admin/stations/**").hasRole("ADMIN")
+//                    .antMatchers("/admin/users/**").hasRole("USER")
+//                    .antMatchers("/admin/stations/**").hasRole("ADMIN")
 //                    .antMatchers("/admin/home").permitAll()
 //                    .antMatchers("/admin/sign-up").permitAll()
-                    .antMatchers("/error/*").permitAll()
-//                    .antMatchers("/admin/*").permitAll()
-//                    .antMatchers("/**/list").permitAll()
+                    .antMatchers("/error/**").permitAll()
+                    .antMatchers("/admin/**").permitAll()
                     .anyRequest().authenticated()
                 .and().formLogin()
                     .loginPage("/admin/home").failureUrl("/error/505")
