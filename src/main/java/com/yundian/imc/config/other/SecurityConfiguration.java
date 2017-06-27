@@ -56,6 +56,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                    .antMatchers("/admin/sign-up").permitAll()
                     .antMatchers("/error/**").permitAll()
                     .antMatchers("/admin/**").permitAll()
+                    .antMatchers("/test/**").permitAll()
                     .anyRequest().authenticated()
                 .and().formLogin()
                     .loginPage("/admin/home").failureUrl("/error/505")

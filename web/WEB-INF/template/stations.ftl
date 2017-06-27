@@ -86,8 +86,11 @@
         <div class="row-fluid">
 
             <div class="btn-toolbar">
-                <a href="/admin/stations/new">  <button class="btn btn-primary"><i class="icon-plus"></i> New Station</button> </a>
-                <button class="btn">Search</button>
+                <a href="/admin/stations/new">
+                    <button class="btn btn-primary"><i class="icon-plus"></i> New Station</button>
+                </a>
+                <button class="btn" id="btn_search">Search</button>
+                <input type="text" class="search-query" id="input_search"/>
                 <div class="btn-group">
                 </div>
             </div>
@@ -106,7 +109,7 @@
                     <tbody>
                     <#list stations as station>
                     <tr>
-                        <td>${station_index+1}</td>
+                        <td>${station_index+1 + page * size}</td>
                         <td>${station.stationName}</td>
                         <td>${station.operatorId}</td>
                         <td>${station.address}</td>
@@ -123,11 +126,20 @@
             </div>
             <div class="pagination">
                 <ul>
-                    <li><a href="#">Prev</a></li>
-                    <#list 1 .. total as  x>
-                    <li><a href="#">${x}</a></li>
-                    </#list>
-                    <li><a href="#">Next</a></li>
+                    <li><a href="/admin/stations?page=<#if page == 0> 0 <#elseif (page > 0)>${page - 1}</#if>">Prev</a>
+                    </li>
+                <#list 1 .. total as  x>
+                    <li><a href="/admin/stations?page=${x -1}">
+                        <#if x-1 == page>
+                            <b>${x}</b>
+                        <#else>
+                        ${x}
+                        </#if>
+                    </a></li>
+                </#list>
+                    <li>
+                        <a href="/admin/stations?page=<#if (page >= total -1)>${total -1}<#else >${page + 1}</#if>">Next</a>
+                    </li>
                 </ul>
             </div>
 
@@ -139,25 +151,13 @@
                 </div>
                 <div class="modal-body">
                     <p class="error-text"><i class="icon-warning-sign modal-icon"></i>Are you sure you want to delete
-                        the user?</p>
+                        the station?</p>
                 </div>
                 <div class="modal-footer">
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
                     <button class="btn btn-danger" data-dismiss="modal">Delete</button>
                 </div>
             </div>
-
-
-            <footer>
-                <hr>
-                <!-- Purchase a site license to remove this link from the footer: http://www.portnine.com/bootstrap-themes -->
-                <p class="pull-right">A <a href="http://www.portnine.com/bootstrap-themes" target="_blank">Free
-                    Bootstrap Theme</a> by <a href="http://www.portnine.com" target="_blank">Portnine</a></p>
-
-
-                <p>&copy; 2012 <a href="http://www.portnine.com" target="_blank">Portnine</a></p>
-            </footer>
-
         </div>
     </div>
 </div>
@@ -169,6 +169,16 @@
     $(function () {
         $('.demo-cancel-click').click(function () {
             return false;
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#btn_search").click(function () {
+            $.get("/admin/stations?stationName=" + $("#input_search").val(), function (data, status) {
+                alert(data);
+            });
         });
     });
 </script>

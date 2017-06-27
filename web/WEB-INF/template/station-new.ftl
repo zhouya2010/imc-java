@@ -88,7 +88,7 @@
 
             <div class="btn-toolbar">
                 <button class="btn btn-primary" id="btn_save"><i class="icon-save"></i> Save</button>
-                <a href="/admin/stations" data-toggle="modal" class="btn">Delete</a>
+                <a href="/admin/stations" data-toggle="modal" class="btn">Cancel</a>
                 <div class="btn-group">
                 </div>
             </div>
@@ -111,7 +111,7 @@
                             </select>
 
                             <label>地区编码</label>
-                            <input type="text" class="input-xlarge" id="areaCode">
+                            <input type="text" class="input-xlarge" id="areaCode" placeholder="查询地址：www.diqudaima.com 精确到区/县">
 
                             <label>地址</label>
                             <input type="text" class="input-xlarge" id="address">
@@ -148,16 +148,16 @@
                             <input type="number" class="input-xlarge" id="parkNums">
 
                             <label>经度</label>
-                            <input type="text" class="input-xlarge" id="stationLng">
+                            <input type="text" class="input-xlarge" id="stationLng" placeholder="保留小数点后6位">
 
                             <label>纬度</label>
-                            <input type="text" class="input-xlarge" id="stationLat">
+                            <input type="text" class="input-xlarge" id="stationLat" placeholder="保留小数点后6位">
 
                             <label>站点引导</label>
-                            <input type="text" class="input-xlarge" id="siteGuide">
+                            <input type="text" class="input-xlarge" id="siteGuide" placeholder="用于引导车主找到充电车位">
 
                             <label>使用车型描述</label>
-                            <input type="text" class="input-xlarge" id="matchCarsDesc">
+                            <input type="text" class="input-xlarge" id="matchCarsDesc" placeholder="如大巴、物流车、私家乘用车、出租车等">
 
                             <label>建设场所</label>
                             <select name="construction" class="input-xlarge" id="construction">
@@ -191,7 +191,7 @@
                             <input type="text" class="input-xlarge" id="parkFeeDesc">
 
                             <label>支付方式</label>
-                            <input type="text" class="input-xlarge" id="paymentType">
+                            <input type="text" class="input-xlarge" id="paymentType" placeholder="支付方式:刷卡、线上、现金">
 
                             <label>备注</label>
                             <input type="text" class="input-xlarge" id="remark">
@@ -210,25 +210,13 @@
                 <div class="modal-body">
 
                     <p class="error-text"><i class="icon-warning-sign modal-icon"></i>Are you sure you want to delete
-                        the user?</p>
+                        the station?</p>
                 </div>
                 <div class="modal-footer">
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
                     <button class="btn btn-danger" data-dismiss="modal">Delete</button>
                 </div>
             </div>
-
-
-            <footer>
-                <hr>
-                <!-- Purchase a site license to remove this link from the footer: http://www.portnine.com/bootstrap-themes -->
-                <p class="pull-right">A <a href="http://www.portnine.com/bootstrap-themes" target="_blank">Free
-                    Bootstrap Theme</a> by <a href="http://www.portnine.com" target="_blank">Portnine</a></p>
-
-
-                <p>&copy; 2012 <a href="http://www.portnine.com" target="_blank">Portnine</a></p>
-            </footer>
-
         </div>
     </div>
 </div>

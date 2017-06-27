@@ -27,13 +27,19 @@ public class StationController {
     @RequestMapping(value = "stations", method = RequestMethod.GET)
     public String getStations(@RequestParam(name = "page", defaultValue = "0", required = false) int page,
                               @RequestParam(name = "size", defaultValue = "20", required = false) int size,
+                              @RequestParam(name = "stationName", defaultValue = "", required = false) String stationName,
                               ModelMap model) {
-
         PageRequest pageRequest = new PageRequest(page, size);
-        Page<Station> stationPage = stationService.findAll(pageRequest);
+        Page<Station> stationPage = stationService.findAllByDelFlagFalse(pageRequest);
 
         model.addAttribute("stations", stationPage.getContent());
         model.addAttribute("total", stationPage.getTotalPages());
+        model.addAttribute("page",page);
+        model.addAttribute("size",size);
+        System.err.println("page ==>" + page);
+        System.err.println("total ==>" + stationPage.getTotalPages());
+        System.err.println("stationName ==>" + stationName);
+
         return "stations";
     }
 
@@ -49,11 +55,22 @@ public class StationController {
 
         model.addAttribute("stations", stationPage.getContent());
         model.addAttribute("total", stationPage.getTotalPages());
+        model.addAttribute("page",0);
+        model.addAttribute("size",20);
         return "stations";
     }
 
     @RequestMapping(value = "stations/{stationId}", method = RequestMethod.GET)
     public String getStation(@PathVariable String stationId, ModelMap model) {
+        model.addAttribute("station", stationService.findStationByStationId(stationId));
+        return "station-edit";
+    }
+
+    @RequestMapping(value = "stations/{stationId}", method = RequestMethod.DELETE)
+    public String deleteStation(@PathVariable String stationId, ModelMap model) {
+        Station station =  stationService.findStationByStationId(stationId);
+        station.setDelFlag(true);
+        stationService.save(station);
         model.addAttribute("station", stationService.findStationByStationId(stationId));
         return "station-edit";
     }
