@@ -89,10 +89,11 @@
                 <a href="/admin/stations/new">
                     <button class="btn btn-primary"><i class="icon-plus"></i> New Station</button>
                 </a>
-                <button class="btn" id="btn_search">Search</button>
-                <input type="text" class="search-query" id="input_search"/>
-                <div class="btn-group">
-                </div>
+
+                <form id="search" style="margin: 0px;display: inline" class="form-inline" action="/admin/stations" method="get">
+                    <button type="submit" class="btn" id="btn_search">Search</button>
+                    <input type="text" name="stationName" class="search-query" id="input_search"/>
+                </form>
             </div>
             <div class="well">
                 <table class="table">
@@ -100,7 +101,7 @@
                     <tr>
                         <th>#</th>
                         <th>stationName</th>
-                        <th>operatorId</th>
+                        <th>PoleNum</th>
                         <th>address</th>
                         <th>stationType</th>
                         <th style="width: 26px;"></th>
@@ -110,8 +111,8 @@
                     <#list stations as station>
                     <tr>
                         <td>${station_index+1 + page * size}</td>
-                        <td>${station.stationName}</td>
-                        <td>${station.operatorId}</td>
+                        <td><a href="/admin/stations/details/${station.stationId}">${station.stationName}</a></td>
+                        <td>${station.poles?size}</td>
                         <td>${station.address}</td>
                         <td>${station.stationType}</td>
                         <td>
@@ -173,15 +174,18 @@
     });
 </script>
 
-<script>
-    $(document).ready(function () {
-        $("#btn_search").click(function () {
-            $.get("/admin/stations?stationName=" + $("#input_search").val(), function (data, status) {
-                alert(data);
-            });
-        });
-    });
-</script>
+<#--<script>-->
+<#--$(document).ready(function () {-->
+<#--$("#btn_search").click(function () {-->
+<#--$.get("/admin/stations",-->
+<#--{-->
+<#--stationName:$("#input_search").val()-->
+<#--}, function (data, status) {-->
+<#--alert(data);-->
+<#--});-->
+<#--});-->
+<#--});-->
+<#--</script>-->
 
 </body>
 </html>

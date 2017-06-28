@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "t_pole")
@@ -46,10 +47,10 @@ public class Pole extends BaseEntity<Long>{
     @NotNull(message = "充电桩总功率不能为空")
     private Double power;
 
-    @NotNull(message = "充电桩名称率不能为空")
+    @NotNull(message = "充电桩名称不能为空")
     private String poleName;
 
-//    List<Connector> connectors;
+    private List<Connector> connectors;
 
     private Station station;
 
@@ -61,15 +62,6 @@ public class Pole extends BaseEntity<Long>{
     public void setPoleId(String poleId) {
         this.poleId = poleId == null ? null : poleId.trim();
     }
-
-//    @Column(name = "station_id")
-//    public String getStationId() {
-//        return stationId;
-//    }
-//
-//    public void setStationId(String stationId) {
-//        this.stationId = stationId == null ? null : stationId.trim();
-//    }
 
     @Column(name = "manufacturer_id")
     public String getManufacturerId() {
@@ -152,13 +144,14 @@ public class Pole extends BaseEntity<Long>{
         this.poleName = poleName == null ? null : poleName.trim();
     }
 
-//    public List<Connector> getConnectors() {
-//        return connectors;
-//    }
-//
-//    public void setConnectors(List<Connector> connectors) {
-//        this.connectors = connectors;
-//    }
+    @OneToMany(mappedBy = "pole", fetch = FetchType.EAGER)
+    public List<Connector> getConnectors() {
+        return connectors;
+    }
+
+    public void setConnectors(List<Connector> connectors) {
+        this.connectors = connectors;
+    }
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false,cascade=CascadeType.ALL)
     @JoinColumn(name = "station_id",referencedColumnName = "station_id")
@@ -168,13 +161,5 @@ public class Pole extends BaseEntity<Long>{
 
     public void setStation(Station station) {
         this.station = station;
-    }
-
-    @Override
-    public String toString() {
-        return "Pole{" +
-                "poleId='" + poleId + '\'' +
-                ", poleName='" + poleName +
-                '}';
     }
 }

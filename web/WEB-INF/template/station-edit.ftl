@@ -214,6 +214,50 @@
                             <label>备注</label>
                             <input type="text" class="input-xlarge" id="remark" value="${station.remark}">
                         </form>
+
+                        <div class="well">
+                            <h3>充电桩</h3>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Model</th>
+                                    <th>Power</th>
+                                    <th style="width: 26px;"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <#list station.poles as pole>
+                                <tr>
+                                    <td>${pole_index+1}</td>
+                                    <td><a href="/admin/stations/details/${station.stationId}">${pole.poleName}</a></td>
+                                    <td>
+                                <span class="label label-sm label-info">
+                                    <#switch pole.poleType>
+                                        <#case "1" >直流<#break>
+                                        <#case "2" >交流<#break>
+                                        <#case "3" >交直流一体<#break>
+                                        <#case "4" >无线<#break>
+                                        <#case "5" >其他<#break>
+                                        <#default> 未知<#break>
+                                    </#switch>
+                                </span>
+
+                                    </td>
+                                    <td>${pole.poleModel}</td>
+                                    <td>${pole.power}</td>
+                                    <td>
+                                        <a href="/admin/stations/${station.stationId}"><i class="icon-pencil"></i></a>
+                                        <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
+                                    </td>
+                                </tr>
+                                </#list>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                     <div class="tab-pane fade" id="profile">
                         <form id="tab2">

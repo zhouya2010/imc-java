@@ -12,6 +12,7 @@ public interface StationDao extends BaseDao<Station, Long> {
     Station findStationByStationId(String stationId);
     int countStationsByAreaCode(String area);
     Page<Station> findAllByDelFlagFalse(Pageable pageable);
+    Page<Station> findAllByDelFlagFalseAndStationNameContains(String stationName,Pageable pageable);
 
     /*
     *原生 SQL 方法

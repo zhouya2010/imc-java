@@ -35,5 +35,9 @@ public class StationServiceImpl extends BaseServiceImpl<Station, Long> implement
         return stationDao.findAllByDelFlagFalse(pageable);
     }
 
+    @Override
+    public Page<Station> searchByStationName(String stationName, Pageable pageable) {
+        return stationDao.findAllByDelFlagFalseAndStationNameContains(stationName,pageable);
 
+    }
 }

@@ -13,4 +13,5 @@ public interface StationService extends BaseService<Station, Long> {
     int countStationsByAreaCode(String area);
     Page<Station> findAllByDelFlagFalse(Pageable pageable);
 
+    Page<Station>  searchByStationName(String stationName,Pageable pageable);
 }
