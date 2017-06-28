@@ -120,7 +120,7 @@ public class Connector extends BaseEntity<Long>{
         this.nationalStandard = nationalStandard;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pole_id",referencedColumnName = "pole_id")
     public Pole getPole() {
         return pole;

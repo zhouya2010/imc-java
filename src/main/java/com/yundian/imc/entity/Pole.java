@@ -9,10 +9,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "t_pole")
-public class Pole extends BaseEntity<Long>{
+public class Pole extends BaseEntity<Long> {
 
     @NotNull(message = "充电桩 ID 不能为空")
-    @Size( max = 23, message = "充电桩 ID 最多为23个字符")
+    @Size(max = 23, message = "充电桩 ID 最多为23个字符")
     private String poleId;
 
 //    @NotNull(message = "充电站 ID 不能为空")
@@ -24,14 +24,14 @@ public class Pole extends BaseEntity<Long>{
     private String manufacturerId;
 
     @NotNull(message = "充电桩生产商不能为空")
-    @Size( max = 30, message = "充电桩生产商最多为30个字符")
+    @Size(max = 30, message = "充电桩生产商最多为30个字符")
     private String manufacturerName;
 
     @NotNull(message = "充电桩型号不能为空")
-    @Size( max = 20, message = "充电桩型号最多为20个字符")
+    @Size(max = 20, message = "充电桩型号最多为20个字符")
     private String poleModel;
 
-   @NotNull(message = "充电桩生产日期不能为空")
+    @NotNull(message = "充电桩生产日期不能为空")
     @Past(message = "生产日期为过去某个时间")
     private Date productionDate;
 
@@ -144,7 +144,7 @@ public class Pole extends BaseEntity<Long>{
         this.poleName = poleName == null ? null : poleName.trim();
     }
 
-    @OneToMany(mappedBy = "pole", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "pole", fetch = FetchType.LAZY)
     public List<Connector> getConnectors() {
         return connectors;
     }
@@ -153,8 +153,8 @@ public class Pole extends BaseEntity<Long>{
         this.connectors = connectors;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false,cascade=CascadeType.ALL)
-    @JoinColumn(name = "station_id",referencedColumnName = "station_id")
+    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "station_id", referencedColumnName = "station_id")
     public Station getStation() {
         return station;
     }

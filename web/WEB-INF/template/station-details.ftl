@@ -182,6 +182,7 @@
                             <th>Type</th>
                             <th>Model</th>
                             <th>Power</th>
+                            <th>Connector</th>
                             <th style="width: 26px;"></th>
                         </tr>
                         </thead>
@@ -205,6 +206,7 @@
                             </td>
                             <td>${pole.poleModel}</td>
                             <td>${pole.power}</td>
+                            <td>${pole.connectors?size}</td>
                             <td>
                                 <a href="/admin/stations/${station.stationId}"><i class="icon-pencil"></i></a>
                                 <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
