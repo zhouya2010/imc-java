@@ -133,24 +133,24 @@
 
                             <label>站点类型</label>
                             <select name="stationType" class="input-xlarge" id="stationType">
-                                <option value="1" <#if station.stationType == "1" > selected="selected"</#if> >公共</option>
-                                <option value="50" <#if station.stationType == "50" > selected="selected"</#if> >个人</option>
-                                <option value="100" <#if station.stationType == "100" > selected="selected"</#if> >公交（专用）</option>
-                                <option value="101" <#if station.stationType == "101" > selected="selected"</#if> >环卫（专用）</option>
-                                <option value="102" <#if station.stationType == "102" > selected="selected"</#if> >物流（专用）</option>
-                                <option value="103" <#if station.stationType == "103" > selected="selected"</#if> >出租车（专用）</option>
-                                <option value="255" <#if station.stationType == "255" > selected="selected"</#if> >其他</option>
+                                <option value="1" <#if station.stationType == "SOCIETY" > selected="selected"</#if> >公共</option>
+                                <option value="50" <#if station.stationType == "INDIVIDUAL" > selected="selected"</#if> >个人</option>
+                                <option value="100" <#if station.stationType == "BUS" > selected="selected"</#if> >公交（专用）</option>
+                                <option value="101" <#if station.stationType == "SANITATION" > selected="selected"</#if> >环卫（专用）</option>
+                                <option value="102" <#if station.stationType == "LOGISTICS" > selected="selected"</#if> >物流（专用）</option>
+                                <option value="103" <#if station.stationType == "TAXI" > selected="selected"</#if> >出租车（专用）</option>
+                                <option value="255" <#if station.stationType == "OTHER" > selected="selected"</#if> >其他</option>
                             </select>
 
                             <label>站点状态</label>
                             <select name="stationStatus" class="input-xlarge" id="stationStatus">
-                                <option value="1" <#if station.stationStatus == "1" > selected="selected"</#if> >建设中</option>
-                                <option value="5" <#if station.stationStatus == "5" > selected="selected"</#if> >关闭下线</option>
-                                <option value="6" <#if station.stationStatus == "6" > selected="selected"</#if> >维护中</option>
-                                <option value="10" <#if station.stationStatus == "10" > selected="selected"</#if> >正在审核</option>
-                                <option value="11" <#if station.stationStatus == "11" > selected="selected"</#if> >审核未通过</option>
-                                <option value="12" <#if station.stationStatus == "12" > selected="selected"</#if> >待审核</option>
-                                <option value="50" <#if station.stationStatus == "50" > selected="selected"</#if> >正常使用</option>
+                                <option value="1" <#if station.stationStatus == "UNDER_CONSTRUCT" > selected="selected"</#if> >建设中</option>
+                                <option value="5" <#if station.stationStatus == "CLOSE" > selected="selected"</#if> >关闭下线</option>
+                                <option value="6" <#if station.stationStatus == "MAINTAIN" > selected="selected"</#if> >维护中</option>
+                                <option value="10" <#if station.stationStatus == "REVIEWING" > selected="selected"</#if> >正在审核</option>
+                                <option value="11" <#if station.stationStatus == "REJECT" > selected="selected"</#if> >审核未通过</option>
+                                <option value="12" <#if station.stationStatus == "PENDING_REVIEW" > selected="selected"</#if> >待审核</option>
+                                <option value="50" <#if station.stationStatus == "USING" > selected="selected"</#if> >正常使用</option>
                             </select>
 
                             <label>车位数量</label>
@@ -170,24 +170,24 @@
 
                             <label>建设场所</label>
                             <select name="construction" class="input-xlarge" id="construction">
-                                <option value="1" <#if station.construction == 1> selected="selected"</#if>>居民区</option>
-                                <option value="2" <#if station.construction == 2> selected="selected"</#if>>公共机构
+                                <option value="1" <#if station.construction == "RESIDENTIAL_ARE"> selected="selected"</#if>>居民区</option>
+                                <option value="2" <#if station.construction == "PUBLIC_INSTITUTIONS"> selected="selected"</#if>>公共机构
                                 </option>
-                                <option value="3" <#if station.construction == 3> selected="selected"</#if>>企事业单位
+                                <option value="3" <#if station.construction == "ENTERPRISES_AND_INSTITUTIONS"> selected="selected"</#if>>企事业单位
                                 </option>
-                                <option value="4"<#if station.construction == 4> selected="selected"</#if>>写字楼</option>
-                                <option value="5"<#if station.construction == 5> selected="selected"</#if>>工业园区</option>
-                                <option value="6"<#if station.construction == 6> selected="selected"</#if>>交通枢纽</option>
-                                <option value="7"<#if station.construction == 7> selected="selected"</#if>>大型文体设施
+                                <option value="4"<#if station.construction == "OFFICE_BUILDING"> selected="selected"</#if>>写字楼</option>
+                                <option value="5"<#if station.construction == "INDUSTRIAL_PARK"> selected="selected"</#if>>工业园区</option>
+                                <option value="6"<#if station.construction == "TRANSPORTATION_HUB"> selected="selected"</#if>>交通枢纽</option>
+                                <option value="7"<#if station.construction == "CULTURAL_AND_SPORTS"> selected="selected"</#if>>大型文体设施
                                 </option>
-                                <option value="8"<#if station.construction == 8> selected="selected"</#if>>城市绿地</option>
-                                <option value="9"<#if station.construction == 9> selected="selected"</#if>>大型建筑配建停车场
+                                <option value="8"<#if station.construction == "URBAN_GREEN_SPACE"> selected="selected"</#if>>城市绿地</option>
+                                <option value="9"<#if station.construction == "BUILDING_PARKING"> selected="selected"</#if>>大型建筑配建停车场
                                 </option>
-                                <option value="10"<#if station.construction == 10> selected="selected"</#if>>路边停车位
+                                <option value="10"<#if station.construction == "ROADSIDE"> selected="selected"</#if>>路边停车位
                                 </option>
-                                <option value="11"<#if station.construction == 11> selected="selected"</#if>>城际高速服务区
+                                <option value="11"<#if station.construction == "SERVICE_ARE"> selected="selected"</#if>>城际高速服务区
                                 </option>
-                                <option value="255"<#if station.construction == 255> selected="selected"</#if>>其他
+                                <option value="255"<#if station.construction == "OTHER"> selected="selected"</#if>>其他
                                 </option>
                             </select>
 

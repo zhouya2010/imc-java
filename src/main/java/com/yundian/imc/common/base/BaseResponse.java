@@ -1,6 +1,7 @@
 package com.yundian.imc.common.base;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  * Created by dell on 2016/12/22.
@@ -67,6 +68,7 @@ public class BaseResponse {
     }
 
     public String toJson() {
+//        Gson gson =new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         Gson gson = new Gson();
         return gson.toJson(this);
     }

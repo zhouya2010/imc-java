@@ -102,8 +102,9 @@
                         <th>#</th>
                         <th>stationName</th>
                         <th>PoleNum</th>
-                        <th>address</th>
-                        <th>stationType</th>
+                        <th>Address</th>
+                        <th>StationType</th>
+                        <th>Status</th>
                         <th style="width: 26px;"></th>
                     </tr>
                     </thead>
@@ -114,7 +115,30 @@
                         <td><a href="/admin/stations/details/${station.stationId}">${station.stationName}</a></td>
                         <td>${station.poles?size}</td>
                         <td>${station.address}</td>
-                        <td>${station.stationType}</td>
+                        <td>
+                            <#switch station.stationType>
+                                <#case   "SOCIETY">公共<#break >
+                                <#case   "INDIVIDUAL" >个人<#break >
+                                <#case  "BUS">公交（专用）<#break >
+                                <#case  "SANITATION">环卫（专用）<#break >
+                                <#case  "LOGISTICS">物流（专用）<#break >
+                                <#case  "TAXI" >出租车（专用）<#break >
+                                <#case  "OTHER">物流（专用）<#break >
+                                <#default>${station.stationType}
+                            </#switch>
+                        </td>
+                        <td>
+                            <#switch station.stationStatus>
+                                <#case  "UNDER_CONSTRUCT"><span class="label muted">建设中</span><#break >
+                                <#case  "CLOSE" >关闭下线<#break >
+                                <#case  "MAINTAIN" > 维护中<#break >
+                                <#case "REVIEWING" > 正在审核<#break >
+                                <#case  "REJECT" ><span class="label label-important">审核未通过</span><#break >
+                                <#case  "PENDING_REVIEW"><span class="label label-warning">待审核</span><#break >
+                                <#case  "USING" ><span class="label label-success">正常使用</span><#break >
+                                <#default><span class="label label-info">未知</span>
+                            </#switch>
+                        </td>
                         <td>
                             <a href="/admin/stations/${station.stationId}"><i class="icon-pencil"></i></a>
                             <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>

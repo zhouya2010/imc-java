@@ -1,5 +1,9 @@
 package com.yundian.imc.entity;
 
+import com.yundian.imc.common.converter.PoleTypeConverter;
+import com.yundian.imc.common.enums.PoleTypeEnum;
+import org.hibernate.annotations.Where;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -36,7 +40,7 @@ public class Pole extends BaseEntity<Long> {
     private Date productionDate;
 
     @NotNull(message = "充电桩类型不能为空")
-    private Byte poleType;
+    private PoleTypeEnum poleType;
 
     @NotNull(message = "充电桩经度不能为空")
     private Double poleLng;
@@ -52,7 +56,7 @@ public class Pole extends BaseEntity<Long> {
 
     private List<Connector> connectors;
 
-    private Station station;
+    private transient Station station;
 
     @Column(name = "pole_id")
     public String getPoleId() {
@@ -100,11 +104,12 @@ public class Pole extends BaseEntity<Long> {
     }
 
     @Column(name = "pole_type")
-    public Byte getPoleType() {
+    @Convert(converter = PoleTypeConverter.class)
+    public PoleTypeEnum getPoleType() {
         return poleType;
     }
 
-    public void setPoleType(Byte poleType) {
+    public void setPoleType(PoleTypeEnum poleType) {
         this.poleType = poleType;
     }
 
@@ -144,7 +149,8 @@ public class Pole extends BaseEntity<Long> {
         this.poleName = poleName == null ? null : poleName.trim();
     }
 
-    @OneToMany(mappedBy = "pole", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "pole", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @Where(clause = "del_flag = false")
     public List<Connector> getConnectors() {
         return connectors;
     }
@@ -153,7 +159,7 @@ public class Pole extends BaseEntity<Long> {
         this.connectors = connectors;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "station_id", referencedColumnName = "station_id")
     public Station getStation() {
         return station;

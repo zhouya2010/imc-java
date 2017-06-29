@@ -1,5 +1,14 @@
 package com.yundian.imc.entity;
 
+import com.yundian.imc.common.converter.ConstructionConverter;
+import com.yundian.imc.common.converter.StationStatusConverter;
+import com.yundian.imc.common.converter.StationTypeConverter;
+import com.yundian.imc.common.enums.ConstructionEnum;
+import com.yundian.imc.common.enums.StationStatusEnum;
+import com.yundian.imc.common.enums.StationTypeEnum;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.Where;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -50,10 +59,11 @@ public class Station extends BaseEntity<Long>{
     private String serviceTel;
 
     @NotNull(message = "站点类型不能为空")
-    private Byte stationType;
+    @Enumerated(EnumType.STRING)
+    private StationTypeEnum stationType;
 
     @NotNull(message = "站点状态不能为空")
-    private Byte stationStatus;
+    private StationStatusEnum stationStatus;
 
     @NotNull(message = "车位数量不能为空")
     private Short parkNums;
@@ -72,7 +82,7 @@ public class Station extends BaseEntity<Long>{
 
     @NotNull(message = "建设场所不能为空")
     @Max(value = 255,message = "建设场所描述错误")
-    private Byte construction;
+    private ConstructionEnum construction;
 
     @NotNull(message = "使用车型描述不能为空")
     @NotEmpty(message = "使用车型描述不能为空")
@@ -201,20 +211,22 @@ public class Station extends BaseEntity<Long>{
     }
 
     @Column(name = "station_type")
-    public Byte getStationType() {
+    @Convert(converter = StationTypeConverter.class)
+    public StationTypeEnum getStationType() {
         return stationType;
     }
 
-    public void setStationType(Byte stationType) {
+    public void setStationType(StationTypeEnum stationType) {
         this.stationType = stationType;
     }
 
     @Column(name = "station_status")
-    public Byte getStationStatus() {
+    @Convert(converter = StationStatusConverter.class)
+    public StationStatusEnum getStationStatus() {
         return stationStatus;
     }
 
-    public void setStationStatus(Byte stationStatus) {
+    public void setStationStatus(StationStatusEnum stationStatus) {
         this.stationStatus = stationStatus;
     }
 
@@ -255,11 +267,12 @@ public class Station extends BaseEntity<Long>{
     }
 
     @Column(name = "construction")
-    public Byte getConstruction() {
+    @Convert(converter = ConstructionConverter.class)
+    public ConstructionEnum getConstruction() {
         return construction;
     }
 
-    public void setConstruction(Byte construction) {
+    public void setConstruction(ConstructionEnum construction) {
         this.construction = construction;
     }
 
@@ -344,7 +357,9 @@ public class Station extends BaseEntity<Long>{
         this.remark = remark == null ? null : remark.trim();
     }
 
-    @OneToMany(mappedBy = "station", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "station", fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
+    @Where(clause = "del_flag = false")
+    @LazyCollection(LazyCollectionOption.EXTRA)
     public List<Pole> getPoles() {
         return poles;
     }

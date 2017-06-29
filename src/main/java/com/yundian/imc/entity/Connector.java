@@ -37,7 +37,7 @@ public class Connector extends BaseEntity<Long>{
     @NotNull(message = "国家标准不能为空")
     private byte nationalStandard;
 
-    private Pole pole;
+    private transient Pole pole;
 
     @Column(name = "connector_id")
     public String getConnectorId() {

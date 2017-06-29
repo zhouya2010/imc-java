@@ -91,16 +91,6 @@ public class StationController {
     @RequestMapping(value = "stations/details/{stationId}", method = RequestMethod.GET)
     public String detailsStation(@PathVariable String stationId, ModelMap model) {
         Station station =  stationService.findStationByStationId(stationId);
-//        station.getPoles().forEach(pole -> System.err.println("poleId ==>" + pole.getPoleId()));
-//        station.getPoles().forEach(pole -> Optional.ofNullable(pole.getConnectors()).ifPresent(connectors -> connectors.forEach(connector ->System.err.println("connectorId ==>" + connector.getConnectorId()))));
-
-        if (station.getPoles() != null) {
-            for (Pole pole : station.getPoles()){
-                if (pole.getConnectors() != null) {
-                    System.err.println("connectorId ==>" +  pole.getConnectors().size());
-                }
-            }
-        }
         model.addAttribute("station", station);
         return "station-details";
     }

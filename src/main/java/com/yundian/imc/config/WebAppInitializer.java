@@ -1,8 +1,11 @@
 package com.yundian.imc.config;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.search.hcore.impl.HibernateSessionFactoryService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.orm.hibernate4.support.OpenSessionInViewFilter;
+import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
@@ -45,10 +48,11 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
     @Override
     protected Filter[] getServletFilters() {
-        OpenSessionInViewFilter openSessionInViewFilter = new OpenSessionInViewFilter();
+        OpenEntityManagerInViewFilter openEntityManagerInViewFilter = new OpenEntityManagerInViewFilter();
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding("UTF-8");
         characterEncodingFilter.setForceEncoding(true);
-        return new Filter[] {characterEncodingFilter,openSessionInViewFilter};
+        return new Filter[] {characterEncodingFilter,openEntityManagerInViewFilter};
     }
+
 }

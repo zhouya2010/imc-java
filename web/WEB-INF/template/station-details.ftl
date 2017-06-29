@@ -118,26 +118,26 @@
                 <p>平台服务电话: ${station.serviceTel}</p>
                 <p>站点类型:
                 <#switch station.stationType>
-                    <#case "1">公共<#break >
-                    <#case "50">个人<#break >
-                    <#case "100">公交（专用）<#break >
-                    <#case "101">环卫（专用）<#break >
-                    <#case "102">物流（专用）<#break >
-                    <#case "103">出租车（专用）<#break >
-                    <#case "255">物流（专用）<#break >
+                    <#case   "SOCIETY">公共<#break >
+                    <#case   "INDIVIDUAL" >个人<#break >
+                    <#case  "BUS">公交（专用）<#break >
+                    <#case  "SANITATION">环卫（专用）<#break >
+                    <#case  "LOGISTICS">物流（专用）<#break >
+                    <#case  "TAXI" >出租车（专用）<#break >
+                    <#case  "OTHER">物流（专用）<#break >
                     <#default>${station.stationType}
                 </#switch>
                 </p>
 
                 <p>站点状态:
                 <#switch station.stationStatus>
-                    <#case "1">建设中<#break >
-                    <#case "5">关闭下线<#break >
-                    <#case "6">维护中<#break >
-                    <#case "10">正在审核<#break >
-                    <#case "11">审核未通过<#break >
-                    <#case "12">待审核<#break >
-                    <#case "50">正常使用<#break >
+                    <#case  "UNDER_CONSTRUCT">建设中<#break >
+                    <#case  "CLOSE" >关闭下线<#break >
+                    <#case  "MAINTAIN" > 维护中<#break >
+                    <#case "REVIEWING" > 正在审核<#break >
+                    <#case  "REJECT" >审核未通过<#break >
+                    <#case  "PENDING_REVIEW">待审核<#break >
+                    <#case  "USING" >正常使用<#break >
                     <#default>${station.stationStatus}
                 </#switch>
                 </p>
@@ -149,18 +149,18 @@
                 <p>使用车型描述: ${station.matchCarsDesc}</p>
                 <p>建设场所:
                 <#switch station.construction>
-                    <#case "1" >   居民区<#break>
-                    <#case "2" >   公共机构<#break>
-                    <#case "3" >   企事业单位<#break>
-                    <#case "4" >   写字楼<#break>
-                    <#case "5" >   工业园区<#break>
-                    <#case "6" >   交通枢纽<#break>
-                    <#case "7" >   大型文体设施<#break>
-                    <#case "8" >   城市绿地<#break>
-                    <#case "9" >   大型建筑配建停车场<#break>
-                    <#case "10">   路边停车位<#break>
-                    <#case "11">   城际高速服务区<#break>
-                    <#case "255">  其他<#break>
+                    <#case "RESIDENTIAL_ARE" >居民区<#break>
+                    <#case "PUBLIC_INSTITUTIONS" >  公共机构<#break>
+                    <#case "ENTERPRISES_AND_INSTITUTIONS" >  企事业单位<#break>
+                    <#case "OFFICE_BUILDING">写字楼<#break>
+                    <#case "INDUSTRIAL_PARK">工业园区<#break>
+                    <#case "TRANSPORTATION_HUB">交通枢纽<#break>
+                    <#case "CULTURAL_AND_SPORTS" >大型文体设施<#break>
+                    <#case "URBAN_GREEN_SPACE" >   城市绿地<#break>
+                    <#case "BUILDING_PARKING" >   大型建筑配建停车场<#break>
+                    <#case "ROADSIDE">   路边停车位<#break>
+                    <#case "SERVICE_ARE">   城际高速服务区<#break>
+                    <#case "OTHER">  其他<#break>
                     <#default> ${station.construction}
                 </#switch>
                 </p>
@@ -194,11 +194,11 @@
                             <td>
                                 <span class="label label-sm label-info">
                                     <#switch pole.poleType>
-                                        <#case "1" >直流<#break>
-                                        <#case "2" >交流<#break>
-                                        <#case "3" >交直流一体<#break>
-                                        <#case "4" >无线<#break>
-                                        <#case "5" >其他<#break>
+                                        <#case "DC" >直流<#break>
+                                        <#case "AC" >交流<#break>
+                                        <#case "DC_AND_AC" >交直流一体<#break>
+                                        <#case "WIRELESS" >无线<#break>
+                                        <#case "OTHER" >其他<#break>
                                         <#default> 未知<#break>
                                     </#switch>
                                 </span>
