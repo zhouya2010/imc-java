@@ -95,12 +95,12 @@ public class StationController {
 
     //待完善
     @RequestMapping(value = "stations/{stationId}", method = RequestMethod.DELETE)
+    @ResponseBody
     public String deleteStation(@PathVariable String stationId, ModelMap model) {
         Station station = stationService.findStationByStationId(stationId);
         station.setDelFlag(true);
         stationService.save(station);
-        model.addAttribute("station", stationService.findStationByStationId(stationId));
-        return "station-edit";
+        return new BaseResponse(0, "hello word").toJson();
     }
 
     @RequestMapping(value = "stations/new", method = RequestMethod.GET)

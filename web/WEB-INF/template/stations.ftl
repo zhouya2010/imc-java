@@ -87,10 +87,11 @@
 
             <div class="btn-toolbar">
                 <a href="/admin/stations/new">
-                    <button class="btn btn-primary"><i class="icon-plus"></i> </button>
+                    <button class="btn btn-primary"><i class="icon-plus"></i></button>
                 </a>
 
-                <form id="search" style="margin: 0px;display: inline" class="form-inline" action="/admin/stations" method="get">
+                <form id="search" style="margin: 0px;display: inline" class="form-inline" action="/admin/stations"
+                      method="get">
                     <button type="submit" class="btn" id="btn_search"><i class="icon-search"></i></button>
                     <input type="text" name="stationName" class="search-query" id="input_search"/>
                 </form>
@@ -117,31 +118,32 @@
                         <td>${station.address}</td>
                         <td>
                             <#switch station.stationType>
-                                <#case   "SOCIETY">公共<#break >
-                                <#case   "INDIVIDUAL" >个人<#break >
-                                <#case  "BUS">公交（专用）<#break >
-                                <#case  "SANITATION">环卫（专用）<#break >
-                                <#case  "LOGISTICS">物流（专用）<#break >
-                                <#case  "TAXI" >出租车（专用）<#break >
-                                <#case  "OTHER">物流（专用）<#break >
+                                <#case "SOCIETY">公共<#break >
+                                <#case "INDIVIDUAL" >个人<#break >
+                                <#case "BUS">公交（专用）<#break >
+                                <#case "SANITATION">环卫（专用）<#break >
+                                <#case "LOGISTICS">物流（专用）<#break >
+                                <#case "TAXI" >出租车（专用）<#break >
+                                <#case "OTHER">物流（专用）<#break >
                                 <#default>${station.stationType}
                             </#switch>
                         </td>
                         <td>
                             <#switch station.stationStatus>
-                                <#case  "UNDER_CONSTRUCT"><span class="label muted">建设中</span><#break >
-                                <#case  "CLOSE" ><span class="label label-important">关闭下线</span><#break >
-                                <#case  "MAINTAIN" > 维护中<#break >
+                                <#case "UNDER_CONSTRUCT"><span class="label muted">建设中</span><#break >
+                                <#case "CLOSE" ><span class="label label-important">关闭下线</span><#break >
+                                <#case "MAINTAIN" > 维护中<#break >
                                 <#case "REVIEWING" > 正在审核<#break >
-                                <#case  "REJECT" ><span class="label label-important">审核未通过</span><#break >
-                                <#case  "PENDING_REVIEW"><span class="label label-warning">待审核</span><#break >
-                                <#case  "USING" ><span class="label label-success">正常使用</span><#break >
+                                <#case "REJECT" ><span class="label label-important">审核未通过</span><#break >
+                                <#case "PENDING_REVIEW"><span class="label label-warning">待审核</span><#break >
+                                <#case "USING" ><span class="label label-success">正常使用</span><#break >
                                 <#default><span class="label label-info">未知</span>
                             </#switch>
                         </td>
                         <td>
                             <a href="/admin/stations/${station.stationId}"><i class="icon-pencil"></i></a>
-                            <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
+                        <#--<a href="#myModal" role="button"  data-toggle="modal"><i class="icon-remove"></i></a>-->
+                            <a stationId="${station.stationId}" class="station-close"><i class="icon-remove"></i></a>
                         </td>
                     </tr>
                     </#list>
@@ -180,7 +182,8 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                    <button class="btn btn-danger" data-dismiss="modal">Delete</button>
+                <#--<button class="btn btn-danger" data-dismiss="modal">Delete</button>-->
+                    <button id="delete" class="btn btn-danger">Delete</button>
                 </div>
             </div>
         </div>
@@ -198,18 +201,36 @@
     });
 </script>
 
-<#--<script>-->
-<#--$(document).ready(function () {-->
-<#--$("#btn_search").click(function () {-->
-<#--$.get("/admin/stations",-->
-<#--{-->
-<#--stationName:$("#input_search").val()-->
-<#--}, function (data, status) {-->
-<#--alert(data);-->
-<#--});-->
-<#--});-->
-<#--});-->
-<#--</script>-->
+
+<script>
+    $(function () {
+
+        var temp_station_id;
+
+        $('.station-close').unbind('click').click(function () {
+            temp_station_id = $(this).attr('stationId');
+            console.log(temp_station_id);
+            $('#myModal').modal('show');
+        });
+
+        $("#delete").click(function () {
+            console.log(temp_station_id);
+//            $('#myModal').modal('hide');
+            $.ajax({
+                url: "/admin/stations/"+temp_station_id,
+                type: "DELETE",
+                success:function (data, status) {
+                    var jsonObj = JSON.parse(data);
+                    alert(jsonObj.Msg);
+                    if(jsonObj.Ret == 0) {
+                        window.location.href="/admin/stations"
+                    }
+                    $('#myModal').modal('hide');
+                }
+            });
+        })
+    });
+</script>
 
 </body>
 </html>
