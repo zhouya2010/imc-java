@@ -2,7 +2,10 @@ package com.yundian.imc.config.other;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
+import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +36,7 @@ import java.util.Map;
         transactionManagerRef = "jpaTransactionManager"
 )
 @PropertySource({"classpath:config.properties"})
+@EnableCaching
 public class DataSourceConfig {
 
     @Value("${jdbc.driverClassName}")
@@ -77,6 +81,21 @@ public class DataSourceConfig {
         return factory;
     }
 
+    @Bean
+    EhCacheManagerFactoryBean ehCacheManager(){
+        EhCacheManagerFactoryBean bean = new EhCacheManagerFactoryBean();
+//        bean.setConfigLocation();
+        bean.setShared(true);
+        return bean;
+    }
+
+    @Bean
+    CacheManager cacheManager(){
+        EhCacheCacheManager manager = new EhCacheCacheManager();
+        manager.setCacheManager(ehCacheManager().getObject());
+
+        return manager;
+    }
 
     @Bean
     public DruidDataSource dataSource() {

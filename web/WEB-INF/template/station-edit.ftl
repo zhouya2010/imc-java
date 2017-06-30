@@ -377,7 +377,8 @@
                     remark: $("#remark").val()
                 }),
                 success:function (data, status) {
-                        alert(status)
+                        alert(data)
+                    window.location.href="/admin/stations";
                 },
                 contentType:"application/json;charset=utf-8",
                 dataType: "json",
