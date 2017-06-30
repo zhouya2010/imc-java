@@ -112,9 +112,9 @@ public class TestController {
 
     @RequestMapping(value = "bbb",method = RequestMethod.GET)
     public String bbb(){
-        stationDao.delete(304L);
+//        stationDao.delete(304L);
 
-        return new BaseResponse(0,"").toJson();
+        return new BaseResponse(0,stationDao.findOne(2L),"").toJson();
 
     }
 }

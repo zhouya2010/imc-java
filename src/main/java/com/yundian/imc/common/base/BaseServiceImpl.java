@@ -84,4 +84,9 @@ public abstract class BaseServiceImpl<T extends BaseEntity<ID>, ID extends Seria
     public void deleteAll() {
         baseDao.deleteAll();
     }
+
+    @Override
+    public Page<T> findAllByDelFlagFalse(Pageable pageable) {
+        return baseDao.findAllByDelFlagFalse(pageable);
+    }
 }

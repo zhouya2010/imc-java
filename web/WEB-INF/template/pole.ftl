@@ -74,25 +74,25 @@
 
     <div class="header">
 
-        <h1 class="page-title">Station</h1>
+        <h1 class="page-title">充电桩</h1>
     </div>
 
     <ul class="breadcrumb">
         <li><a href="index.html">首页</a> <span class="divider">/</span></li>
-        <li class="active">站点</li>
+        <li class="active">充电桩</li>
     </ul>
 
     <div class="container-fluid">
         <div class="row-fluid">
 
             <div class="btn-toolbar">
-                <a href="/admin/stations/new">
-                    <button class="btn btn-primary"><i class="icon-plus"></i> </button>
+                <a href="/admin/pole/new">
+                    <button class="btn btn-primary"><i class="icon-plus"></i></button>
                 </a>
 
-                <form id="search" style="margin: 0px;display: inline" class="form-inline" action="/admin/stations" method="get">
+                <form id="search" style="margin: 0px;display: inline" class="form-inline" action="/admin/pole" method="get">
                     <button type="submit" class="btn" id="btn_search"><i class="icon-search"></i></button>
-                    <input type="text" name="stationName" class="search-query" id="input_search"/>
+                    <input type="text" name="poleId" class="search-query" id="input_search"/>
                 </form>
             </div>
             <div class="well">
@@ -100,47 +100,36 @@
                     <thead>
                     <tr>
                         <th>#</th>
+                        <th>充电桩ID</th>
                         <th>名称</th>
-                        <th>充电桩个数</th>
-                        <th>地址</th>
                         <th>类型</th>
-                        <th>状态</th>
+                        <th>所属站点</th>
                         <th style="width: 26px;"></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <#list stations as station>
+                    <#list poles as pole>
                     <tr>
-                        <td>${station_index+1 + page * size}</td>
-                        <td><a href="/admin/stations/details/${station.stationId}">${station.stationName}</a></td>
-                        <td>${station.poles?size}</td>
-                        <td>${station.address}</td>
+                        <td>${pole_index+1 + page * size}</td>
+                        <td><a href="/admin/pole/details/${pole.id}">${pole.poleId}</a></td>
+                        <td>${pole.poleName}</td>
                         <td>
-                            <#switch station.stationType>
-                                <#case   "SOCIETY">公共<#break >
-                                <#case   "INDIVIDUAL" >个人<#break >
-                                <#case  "BUS">公交（专用）<#break >
-                                <#case  "SANITATION">环卫（专用）<#break >
-                                <#case  "LOGISTICS">物流（专用）<#break >
-                                <#case  "TAXI" >出租车（专用）<#break >
-                                <#case  "OTHER">物流（专用）<#break >
-                                <#default>${station.stationType}
-                            </#switch>
+                                <span class="label label-sm label-info">
+                                    <#switch pole.poleType>
+                                        <#case "DC" >直流<#break>
+                                        <#case "AC" >交流<#break>
+                                        <#case "DC_AND_AC" >交直流一体<#break>
+                                        <#case "WIRELESS" >无线<#break>
+                                        <#case "OTHER" >其他<#break>
+                                        <#default> 未知<#break>
+                                    </#switch>
+                                </span>
                         </td>
                         <td>
-                            <#switch station.stationStatus>
-                                <#case  "UNDER_CONSTRUCT"><span class="label muted">建设中</span><#break >
-                                <#case  "CLOSE" ><span class="label label-important">关闭下线</span><#break >
-                                <#case  "MAINTAIN" > 维护中<#break >
-                                <#case "REVIEWING" > 正在审核<#break >
-                                <#case  "REJECT" ><span class="label label-important">审核未通过</span><#break >
-                                <#case  "PENDING_REVIEW"><span class="label label-warning">待审核</span><#break >
-                                <#case  "USING" ><span class="label label-success">正常使用</span><#break >
-                                <#default><span class="label label-info">未知</span>
-                            </#switch>
+                            <a href="/admin/stations/details/${pole.station.stationId}">${pole.station.stationName}</a>
                         </td>
                         <td>
-                            <a href="/admin/stations/${station.stationId}"><i class="icon-pencil"></i></a>
+                            <a href="/admin/pole/${pole.poleId}"><i class="icon-pencil"></i></a>
                             <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
                         </td>
                     </tr>
@@ -151,10 +140,10 @@
             </div>
             <div class="pagination">
                 <ul>
-                    <li><a href="/admin/stations?page=<#if page == 0> 0 <#elseif (page > 0)>${page - 1}</#if>">Prev</a>
+                    <li><a href="/admin/pole?page=<#if page == 0> 0 <#elseif (page > 0)>${page - 1}</#if>">Prev</a>
                     </li>
                 <#list 1 .. total as  x>
-                    <li><a href="/admin/stations?page=${x -1}">
+                    <li><a href="/admin/pole?page=${x -1}">
                         <#if x-1 == page>
                             <b>${x}</b>
                         <#else>
@@ -163,7 +152,7 @@
                     </a></li>
                 </#list>
                     <li>
-                        <a href="/admin/stations?page=<#if (page >= total -1)>${total -1}<#else >${page + 1}</#if>">Next</a>
+                        <a href="/admin/pole?page=<#if (page >= total -1)>${total -1}<#else >${page + 1}</#if>">Next</a>
                     </li>
                 </ul>
             </div>

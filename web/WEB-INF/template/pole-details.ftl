@@ -74,13 +74,13 @@
 <div class="content">
 
     <ul class="breadcrumb">
-        <li><a href="/admin/login">Home</a> <span class="divider">/</span></li>
-        <li><a href="/admin/stations">Stations</a> <span class="divider">/</span></li>
-        <li class="active">Station</li>
+        <li><a href="/admin/login">首页</a> <span class="divider">/</span></li>
+        <li><a href="/admin/pole">充电桩</a> <span class="divider">/</span></li>
+        <li class="active">充电桩详情</li>
     </ul>
 
     <div class="header">
-        <h1 class="page-title">${station.stationName}</h1>
+        <h1 class="page-title">${pole.poleName}</h1>
     </div>
 
 
@@ -96,84 +96,37 @@
             </div>
             <div class="well">
 
-                <p>站点名称 : ${station.stationName}</p>
-                <p>运营商 :
-                <#switch station.operatorId>
+                <p>充电桩名称 : ${pole.poleName}</p>
+                <p>生产商 :
+                <#switch pole.manufacturer_id>
                     <#case "MA1MDPK80">思度科技<#break >
                     <#case "783840483">云电科技<#break >
-                    <#default>${station.stationName}
+                    <#case "69839643X">江苏嘉钰新能源<#break >
+                    <#default>${pole.manufacturer_id}
                 </#switch>
                 </p>
 
-                <p>设备生产商:
-                <#switch station.equipmentOwnerId>
-                    <#case "69839643X">江苏嘉钰新能源技术有限公司<#break >
-                    <#default>${station.equipmentOwnerId}
+
+                <p>型号: <#switch pole.poleType>
+                    <#case "DC" >直流<#break>
+                    <#case "AC" >交流<#break>
+                    <#case "DC_AND_AC" >交直流一体<#break>
+                    <#case "WIRELESS" >无线<#break>
+                    <#case "OTHER" >其他<#break>
+                    <#default> 未知<#break>
                 </#switch>
                 </p>
 
-                <p>地区编码: ${station.areaCode}</p>
-                <p>地址: ${station.address}</p>
-                <p>站点电话: ${station.stationTel}</p>
-                <p>平台服务电话: ${station.serviceTel}</p>
-                <p>站点类型:
-                <#switch station.stationType>
-                    <#case   "SOCIETY">公共<#break >
-                    <#case   "INDIVIDUAL" >个人<#break >
-                    <#case  "BUS">公交（专用）<#break >
-                    <#case  "SANITATION">环卫（专用）<#break >
-                    <#case  "LOGISTICS">物流（专用）<#break >
-                    <#case  "TAXI" >出租车（专用）<#break >
-                    <#case  "OTHER">物流（专用）<#break >
-                    <#default>${station.stationType}
-                </#switch>
-                </p>
 
-                <p>站点状态:
-                <#switch station.stationStatus>
-                    <#case  "UNDER_CONSTRUCT">建设中<#break >
-                    <#case  "CLOSE" >关闭下线<#break >
-                    <#case  "MAINTAIN" > 维护中<#break >
-                    <#case "REVIEWING" > 正在审核<#break >
-                    <#case  "REJECT" >审核未通过<#break >
-                    <#case  "PENDING_REVIEW">待审核<#break >
-                    <#case  "USING" >正常使用<#break >
-                    <#default>${station.stationStatus}
-                </#switch>
-                </p>
+                <p>功率: ${pole.power}</p>
 
-                <p>车位数量: ${station.parkNums}</p>
-                <p>经度: ${station.stationLng}</p>
-                <p>纬度: ${station.stationLat}</p>
-                <p>站点引导: ${station.siteGuide}</p>
-                <p>使用车型描述: ${station.matchCarsDesc}</p>
-                <p>建设场所:
-                <#switch station.construction>
-                    <#case "RESIDENTIAL_ARE" >居民区<#break>
-                    <#case "PUBLIC_INSTITUTIONS" >  公共机构<#break>
-                    <#case "ENTERPRISES_AND_INSTITUTIONS" >  企事业单位<#break>
-                    <#case "OFFICE_BUILDING">写字楼<#break>
-                    <#case "INDUSTRIAL_PARK">工业园区<#break>
-                    <#case "TRANSPORTATION_HUB">交通枢纽<#break>
-                    <#case "CULTURAL_AND_SPORTS" >大型文体设施<#break>
-                    <#case "URBAN_GREEN_SPACE" >   城市绿地<#break>
-                    <#case "BUILDING_PARKING" >   大型建筑配建停车场<#break>
-                    <#case "ROADSIDE">   路边停车位<#break>
-                    <#case "SERVICE_ARE">   城际高速服务区<#break>
-                    <#case "OTHER">  其他<#break>
-                    <#default> ${station.construction}
-                </#switch>
-                </p>
-                <p>车位楼层以及数量信息: ${station.parkInfo}</p>
-                <p>营业时间: ${station.busineHours}</p>
-                <p>电费描述: ${station.electricityFeeDesc}</p>
-                <p>服务费描: ${station.serviceFeeDesc}</p>
-                <p>停车费描述: ${station.parkFeeDesc}</p>
-                <p>支付方式: ${station.paymentType}</p>
-                <p>备注: ${station.remark}</p>
+
+                <p>经度: ${pole.poleLng}</p>
+                <p>纬度: ${pole.poleLat}</p>
+
 
                 <div class="well">
-                    <h3>充电桩</h3>
+                    <h3>充电枪</h3>
                     <table class="table">
                         <thead>
                         <tr>
@@ -181,31 +134,36 @@
                             <th>ID</th>
                             <th>名称</th>
                             <th>型号</th>
-                            <th>功率</th>
-                            <th>充电枪个数</th>
+                            <th>标准</th>
                             <th style="width: 26px;"></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <#list station.poles as pole>
+                        <#list pole.connectors as connector>
                         <tr>
-                            <td>${pole_index+1}</td>
-                            <td>${pole.poleId}</td>
-                            <td><a href="/admin/pole/details/${pole.id}">${pole.poleName}</a></td>
+                            <td>${connector_index+1}</td>
+                            <td>${connector.connectorId}</td>
+                            <td><a href="/admin/stations/details/${connector.id}">${connector.connectorName}</a></td>
                             <td>
                                 <span class="label label-sm label-info">
-                                    <#switch pole.poleType>
-                                        <#case "DC" >直流<#break>
-                                        <#case "AC" >交流<#break>
-                                        <#case "DC_AND_AC" >交直流一体<#break>
-                                        <#case "WIRELESS" >无线<#break>
-                                        <#case "OTHER" >其他<#break>
-                                        <#default> 未知<#break>
-                                    </#switch>
+                                    <#--<#switch pole.poleType>-->
+                                        <#--<#case "DC" >直流<#break>-->
+                                        <#--<#case "AC" >交流<#break>-->
+                                        <#--<#case "DC_AND_AC" >交直流一体<#break>-->
+                                        <#--<#case "WIRELESS" >无线<#break>-->
+                                        <#--<#case "OTHER" >其他<#break>-->
+                                        <#--<#default> 未知<#break>-->
+                                    <#--</#switch>-->
+                                    ${connector.connectorType}
                                 </span>
                             </td>
-                            <td>${pole.power}</td>
-                            <td>${pole.connectors?size}</td>
+                            <td>
+                            <#switch connector.nationalStandard>
+                                <#case "1"><span class="label label-sm label-warning">2011</span><#break>
+                                <#case "2"><span class="label label-sm label-warning">2015</span><#break>
+                                <#default> 未知<#break>
+                            </#switch>
+                            </td>
                             <td>
                                 <a href="/admin/stations/${station.stationId}"><i class="icon-pencil"></i></a>
                                 <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>

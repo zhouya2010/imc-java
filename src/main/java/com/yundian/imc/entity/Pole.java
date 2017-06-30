@@ -149,7 +149,7 @@ public class Pole extends BaseEntity<Long> {
         this.poleName = poleName == null ? null : poleName.trim();
     }
 
-    @OneToMany(mappedBy = "pole", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pole", fetch = FetchType.LAZY)
     @Where(clause = "del_flag = false")
     public List<Connector> getConnectors() {
         return connectors;

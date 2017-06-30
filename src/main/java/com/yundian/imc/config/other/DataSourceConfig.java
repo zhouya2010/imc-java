@@ -2,6 +2,7 @@ package com.yundian.imc.config.other;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,9 +50,19 @@ public class DataSourceConfig {
         Map<String, Object> properties = new Hashtable<>();
         properties.put("javax.persistence.schema-generation.database.action",
                 "none");
-        properties.put("hibernate.show_sql",true);
-        properties.put("hibernate.format_sql",true);
-        properties.put("hibernate.use_sql_comments",false);
+        properties.put("hibernate.show_sql", true);
+        properties.put("hibernate.format_sql", true);
+        properties.put("hibernate.use_sql_comments", false);
+        //二级缓存配置
+//        properties.put("hibernate.cache.use_second_level_cache", true);
+//        properties.put("hibernate.cache.use_query_cache", true);
+//        properties.put("hibernate.cache.use_structured_entries", true);
+//        properties.put("hibernate.cache.auto_evict_collection_cache", true);
+//        properties.put("hibernate.cache.use_reference_entries", true);
+//        properties.put("hibernate.cache.provider_class", "org.hibernate.cache.EhCacheProvider");
+//        properties.put("hibernate.cache.region.factory_class", "org.hibernate.cache.ehcache.EhCacheRegionFactory");
+
+
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.setDatabasePlatform("org.hibernate.dialect.MySQL5InnoDBDialect");
 

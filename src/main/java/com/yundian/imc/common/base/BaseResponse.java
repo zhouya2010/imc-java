@@ -68,7 +68,6 @@ public class BaseResponse {
     }
 
     public String toJson() {
-//        Gson gson =new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         Gson gson = new Gson();
         return gson.toJson(this);
     }

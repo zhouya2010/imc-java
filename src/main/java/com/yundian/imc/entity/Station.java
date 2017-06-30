@@ -81,7 +81,6 @@ public class Station extends BaseEntity<Long>{
     private String siteGuide;
 
     @NotNull(message = "建设场所不能为空")
-    @Max(value = 255,message = "建设场所描述错误")
     private ConstructionEnum construction;
 
     @NotNull(message = "使用车型描述不能为空")
@@ -357,7 +356,7 @@ public class Station extends BaseEntity<Long>{
         this.remark = remark == null ? null : remark.trim();
     }
 
-    @OneToMany(mappedBy = "station", fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "station", fetch = FetchType.LAZY)
     @Where(clause = "del_flag = false")
     @LazyCollection(LazyCollectionOption.EXTRA)
     public List<Pole> getPoles() {
